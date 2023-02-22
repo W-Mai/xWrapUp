@@ -1,0 +1,4 @@
+.idea
+cmake-*
+__pycache__
+build
