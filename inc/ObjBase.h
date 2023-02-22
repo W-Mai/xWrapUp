@@ -9,16 +9,17 @@
 
 #include "enums/EObjBase.h"
 
-BASE_CLASS_BEGIN(ObjBase)
+#define CURRENT_CLASS_NAME ObjBase
+
+BASE_CLASS_BEGIN
 CLASS_OBJ_INIT({
-    CLASS_OBJ_INIT_ITEM(ObjBase, getAttr);
-    CLASS_OBJ_INIT_ITEM(ObjBase, setAttr);
-    CLASS_OBJ_INIT_ITEM(ObjBase, execCb);
-    CLASS_OBJ_INIT_ITEM(ObjBase, registerCb);
+    CLASS_OBJ_INIT_ITEM(getAttr);
+    CLASS_OBJ_INIT_ITEM(setAttr);
+    CLASS_OBJ_INIT_ITEM(execCb);
+    CLASS_OBJ_INIT_ITEM(registerCb);
 })
 
 ObjBase() {}
-
 
 void getAttr() {}
 
@@ -27,6 +28,7 @@ void setAttr() {}
 void execCb() {}
 
 void registerCb() {}
-BASE_CLASS_END(ObjBase)
 
-#endif//XWRAPUP_OBJBASE_H
+BASE_CLASS_END
+#undef CURRENT_CLASS_NAME// remember to clear macros
+#endif                   // XWRAPUP_OBJBASE_H

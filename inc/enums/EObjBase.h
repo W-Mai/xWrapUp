@@ -6,15 +6,14 @@
 #define XWRAPUP_EOBJBASE_H
 
 #include "Utils.h"
+#define CURRENT_CLASS_NAME ObjBase
 
-FUNC_ENUM(
-    ObjBase,
-    {
-        FUNC_ENUM_ITEM(getAttr),
-        FUNC_ENUM_ITEM(setAttr),
-        FUNC_ENUM_ITEM(execCb),
-        FUNC_ENUM_ITEM(registerCb),
-    }
-);
+FUNC_ENUM({
+    FUNC_ENUM_ITEM(getAttr),
+    FUNC_ENUM_ITEM(setAttr),
+    FUNC_ENUM_ITEM(execCb),
+    FUNC_ENUM_ITEM(registerCb),
+});
 
-#endif//XWRAPUP_EOBJBASE_H
+#undef CURRENT_CLASS_NAME// remember to clear macros
+#endif                   // XWRAPUP_EOBJBASE_H
