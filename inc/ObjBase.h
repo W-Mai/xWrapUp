@@ -15,19 +15,25 @@ BASE_CLASS_BEGIN({
     CLASS_OBJ_INIT_ITEM(show);
     CLASS_OBJ_INIT_ITEM(hide);
     CLASS_OBJ_INIT_ITEM(visible);
+
+    CLASS_OBJ_INIT_ITEM_ATTR(Width);
 })
 
 public:
 ObjBase() = default;
 
 template<class T, class... ARGS>
-T getAttr(ARGS... args) const {
-    return exec<T>(args...);
+T getAttr(uint32_t id, ARGS... args) {
+    auto func_pack = attr_map[(ATTR_ENUM_NAME(CURRENT_CLASS_NAME)) id];
+    auto func      = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack.get;
+    return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
-void setAttr(ARGS... args) {
-    exec<T>(args...);
+void setAttr(uint32_t id, ARGS... args) {
+    auto func_pack = attr_map[(ATTR_ENUM_NAME(CURRENT_CLASS_NAME)) id];
+    auto func      = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack.set;
+    return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
@@ -45,8 +51,12 @@ void show() { visibility = true; }
 void hide() { visibility = false; }
 bool visible() const { return visibility; }
 
+int getWidth() { return width; }
+void setWidth(int val) { width = val; }
+
 private:
 bool visibility;
+int width;
 
 BASE_CLASS_END
 #undef CURRENT_CLASS_NAME// remember to clear macros

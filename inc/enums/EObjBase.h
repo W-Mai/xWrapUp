@@ -14,5 +14,9 @@ FUNC_ENUM({
     FUNC_ENUM_ITEM(visible),
 });
 
+ATTR_ENUM({
+    ATTR_ENUM_ITEM(Width),
+});
+
 #undef CURRENT_CLASS_NAME// remember to clear macros
 #endif                   // XWRAPUP_EOBJBASE_H

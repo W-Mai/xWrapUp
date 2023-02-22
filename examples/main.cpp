@@ -14,5 +14,8 @@ int main() {
     objBase.exec<void>(FE(ObjBase) hide);
     std::cout << objBase.exec<bool>(FE(ObjBase) visible) << std::endl;
 
+    objBase.setAttr<void>(AE(ObjBase) Width, 20);
+    std::cout << objBase.getAttr<int>(AE(ObjBase) Width) << std::endl;
+
     return 0;
 }
