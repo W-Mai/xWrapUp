@@ -5,26 +5,28 @@
 #ifndef XWRAPUP_OBJBASE_H
 #define XWRAPUP_OBJBASE_H
 
-class ObjBase {
-private:
-public:
-    ObjBase() {
-    }
+#include <map>
 
-    void init() {
-    }
+#include "enums/EObjBase.h"
 
-    void gstAttr() {
-    }
+BASE_CLASS_BEGIN(ObjBase)
+CLASS_OBJ_INIT({
+    CLASS_OBJ_INIT_ITEM(ObjBase, getAttr);
+    CLASS_OBJ_INIT_ITEM(ObjBase, setAttr);
+    CLASS_OBJ_INIT_ITEM(ObjBase, execCb);
+    CLASS_OBJ_INIT_ITEM(ObjBase, registerCb);
+})
 
-    void setAttr() {
-    }
+ObjBase() {}
 
-    void execCb() {
-    }
 
-    void registerCb() {
-    }
-};
+void getAttr() {}
+
+void setAttr() {}
+
+void execCb() {}
+
+void registerCb() {}
+BASE_CLASS_END(ObjBase)
 
 #endif//XWRAPUP_OBJBASE_H
