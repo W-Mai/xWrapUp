@@ -12,18 +12,23 @@
 #define CURRENT_CLASS_NAME ObjBase
 
 BASE_CLASS_BEGIN({
-    CLASS_OBJ_INIT_ITEM(getAttr);
-    CLASS_OBJ_INIT_ITEM(setAttr);
-    CLASS_OBJ_INIT_ITEM(registerCb);
+    CLASS_OBJ_INIT_ITEM(show);
+    CLASS_OBJ_INIT_ITEM(hide);
+    CLASS_OBJ_INIT_ITEM(visible);
 })
 
+public:
 ObjBase() = default;
 
-int a;
+template<class T, class... ARGS>
+T getAttr(ARGS... args) const {
+    return exec<T>(args...);
+}
 
-int getAttr() const { return a; }
-
-void setAttr(int v, int v2) { a = v + v2; }
+template<class T, class... ARGS>
+void setAttr(ARGS... args) {
+    exec<T>(args...);
+}
 
 template<class T, class... ARGS>
 T exec(uint32_t id, ARGS... args) {
@@ -34,6 +39,14 @@ T exec(uint32_t id, ARGS... args) {
 }
 
 void registerCb() {}
+
+protected:
+void show() { visibility = true; }
+void hide() { visibility = false; }
+bool visible() const { return visibility; }
+
+private:
+bool visibility;
 
 BASE_CLASS_END
 #undef CURRENT_CLASS_NAME// remember to clear macros

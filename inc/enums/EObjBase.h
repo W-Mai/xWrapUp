@@ -9,9 +9,9 @@
 #define CURRENT_CLASS_NAME ObjBase
 
 FUNC_ENUM({
-    FUNC_ENUM_ITEM(getAttr),
-    FUNC_ENUM_ITEM(setAttr),
-    FUNC_ENUM_ITEM(registerCb),
+    FUNC_ENUM_ITEM(show),
+    FUNC_ENUM_ITEM(hide),
+    FUNC_ENUM_ITEM(visible),
 });
 
 #undef CURRENT_CLASS_NAME// remember to clear macros

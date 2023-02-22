@@ -9,9 +9,10 @@ int main() {
     ObjBase objBase{};
     ObjBase::init();
 
-    objBase.exec<void>(FE(ObjBase) setAttr, 10, 20);
-    int a = objBase.exec<int>(FE(ObjBase) getAttr);
+    objBase.exec<void>(FE(ObjBase) show);
+    std::cout << objBase.exec<bool>(FE(ObjBase) visible) << std::endl;
+    objBase.exec<void>(FE(ObjBase) hide);
+    std::cout << objBase.exec<bool>(FE(ObjBase) visible) << std::endl;
 
-    std::cout << a << std::endl;
     return 0;
 }
