@@ -11,7 +11,6 @@
 FUNC_ENUM({
     FUNC_ENUM_ITEM(getAttr),
     FUNC_ENUM_ITEM(setAttr),
-    FUNC_ENUM_ITEM(execCb),
     FUNC_ENUM_ITEM(registerCb),
 });
 

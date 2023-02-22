@@ -11,21 +11,27 @@
 
 #define CURRENT_CLASS_NAME ObjBase
 
-BASE_CLASS_BEGIN
-CLASS_OBJ_INIT({
+BASE_CLASS_BEGIN({
     CLASS_OBJ_INIT_ITEM(getAttr);
     CLASS_OBJ_INIT_ITEM(setAttr);
-    CLASS_OBJ_INIT_ITEM(execCb);
     CLASS_OBJ_INIT_ITEM(registerCb);
 })
 
-ObjBase() {}
+ObjBase() = default;
 
-void getAttr() {}
+int a;
 
-void setAttr() {}
+int getAttr() const { return a; }
 
-void execCb() {}
+void setAttr(int v, int v2) { a = v + v2; }
+
+template<class T, class... ARGS>
+T exec(uint32_t id, ARGS... args) {
+    auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)
+    ) func_map[(FUNC_ENUM_NAME(CURRENT_CLASS_NAME)) id];
+
+    return (this->*func)(args...);
+}
 
 void registerCb() {}
 
