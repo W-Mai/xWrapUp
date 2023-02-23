@@ -9,24 +9,25 @@
 #define MAP_TYPE std::map
 #define FUNC_MAP_NAME func_map
 #define ATTR_MAP_NAME attr_map
+#define CLASS_FUNC_TYPE(NAME) NAME##_CLASS_FUNC_TYPE
 
-#define BASE_CLASS_BEGIN(...)                                                  \
-    class CURRENT_CLASS_NAME;                                                  \
-    using __CONCAT(CURRENT_CLASS_NAME, CLASS_TYPE) =                           \
-        void (CURRENT_CLASS_NAME::*)();                                        \
-    struct __CONCAT(CURRENT_CLASS_NAME, _ATTR_FUNC_PACK) {                     \
-        __CONCAT(CURRENT_CLASS_NAME, CLASS_TYPE) get;                          \
-        __CONCAT(CURRENT_CLASS_NAME, CLASS_TYPE) set;                          \
+#define BASE_CLASS_BEGIN(CLASS_NAME, ...)                                      \
+    class CLASS_NAME;                                                          \
+    using CLASS_FUNC_TYPE(CLASS_NAME) = void (CURRENT_CLASS_NAME::*)();        \
+    struct CLASS_NAME##_ATTR_FUNC_PACK {                                       \
+        CLASS_FUNC_TYPE(CLASS_NAME) get;                                       \
+        CLASS_FUNC_TYPE(CLASS_NAME) set;                                       \
     };                                                                         \
-    static MAP_TYPE<                                                           \
-        FUNC_ENUM_NAME(CURRENT_CLASS_NAME),                                    \
-        void (CURRENT_CLASS_NAME::*)()>                                        \
-        FUNC_MAP_NAME;                                                         \
-    static MAP_TYPE<                                                           \
-        ATTR_ENUM_NAME(CURRENT_CLASS_NAME),                                    \
-        __CONCAT(CURRENT_CLASS_NAME, _ATTR_FUNC_PACK)>                         \
-        ATTR_MAP_NAME;                                                         \
     class CURRENT_CLASS_NAME {                                                 \
+    public:                                                                    \
+        static MAP_TYPE<                                                       \
+            FUNC_ENUM_NAME(CURRENT_CLASS_NAME),                                \
+            void (CURRENT_CLASS_NAME::*)()>                                    \
+            FUNC_MAP_NAME;                                                     \
+        static MAP_TYPE<                                                       \
+            ATTR_ENUM_NAME(CURRENT_CLASS_NAME),                                \
+            CLASS_NAME##_ATTR_FUNC_PACK>                                       \
+            ATTR_MAP_NAME;                                                     \
         CLASS_OBJ_INIT(__VA_ARGS__)
 
 
@@ -47,8 +48,8 @@ public:                                                                        \
 
 #define CLASS_OBJ_INIT_ITEM_ATTR(ITEM_NAME)                                    \
     ATTR_MAP_NAME[ATTR_ENUM_NAME(CURRENT_CLASS_NAME)::ITEM_NAME] = {           \
-        (__CONCAT(CURRENT_CLASS_NAME, CLASS_TYPE)) & ObjBase::get##ITEM_NAME,  \
-        (__CONCAT(CURRENT_CLASS_NAME, CLASS_TYPE)) & ObjBase::set##ITEM_NAME,  \
+        (void(CURRENT_CLASS_NAME::*)()) & CURRENT_CLASS_NAME::get##ITEM_NAME,  \
+        (void(CURRENT_CLASS_NAME::*)()) & CURRENT_CLASS_NAME::set##ITEM_NAME,  \
     }
 
 #define FUNC_ENUM_NAME(NAME) __CONCAT(ENUM_FUNC_, NAME)

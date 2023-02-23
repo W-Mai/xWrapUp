@@ -6,5 +6,6 @@
 #define XWRAPUP_XWRAPUP_H
 
 #include "ObjBase.h"
+#include "Objs/Button.h"
 
 #endif//XWRAPUP_XWRAPUP_H

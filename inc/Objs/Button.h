@@ -1,26 +1,19 @@
 //
-// Created by W-Mai on 2023/2/21.
+// Created by W-Mai on 2023/2/22.
 //
 
-#ifndef XWRAPUP_OBJBASE_H
-#define XWRAPUP_OBJBASE_H
+#ifndef XWRAPUP_BUTTON_H
+#define XWRAPUP_BUTTON_H
 
-#include <map>
+#include "enums/EButton.h"
 
-#include "enums/EObjBase.h"
 
-#define CURRENT_CLASS_NAME ObjBase
+#define CURRENT_CLASS_NAME Button
 
-BASE_CLASS_BEGIN(ObjBase, {
-    CLASS_OBJ_INIT_ITEM(show);
-    CLASS_OBJ_INIT_ITEM(hide);
-    CLASS_OBJ_INIT_ITEM(visible);
-
-    CLASS_OBJ_INIT_ITEM_ATTR(Width);
-})
+BASE_CLASS_BEGIN(Button, { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 
 public:
-ObjBase() = default;
+Button() = default;
 
 template<class T, class... ARGS>
 T getAttr(uint32_t id, ARGS... args) {
@@ -47,12 +40,8 @@ T exec(uint32_t id, ARGS... args) {
 void registerCb() {}
 
 protected:
-void show() { visibility = true; }
-void hide() { visibility = false; }
-bool visible() const { return visibility; }
-
-int getWidth() { return width; }
-void setWidth(int val) { width = val; }
+int getTest() { return width; }
+void setTest(int val) { width = val; }
 
 private:
 bool visibility;
@@ -60,4 +49,5 @@ int width;
 
 BASE_CLASS_END
 #undef CURRENT_CLASS_NAME// remember to clear macros
-#endif                   // XWRAPUP_OBJBASE_H
+
+#endif//XWRAPUP_BUTTON_H

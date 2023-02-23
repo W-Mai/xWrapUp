@@ -5,3 +5,4 @@ project(example)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(example main.cpp)
+target_link_libraries(example xWrapUp)
