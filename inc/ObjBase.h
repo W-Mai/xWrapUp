@@ -58,6 +58,6 @@ private:
 bool visibility;
 int width;
 
-CLASS_END
+CLASS_END(ObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros
 #endif                   // XWRAPUP_OBJBASE_H

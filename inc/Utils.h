@@ -43,7 +43,7 @@
         CLASS_OBJ_INIT(__VA_ARGS__)                                            \
     private:
 
-#define CLASS_END                                                              \
+#define CLASS_END(CLASS_NAME)                                                  \
     }                                                                          \
     ;
 

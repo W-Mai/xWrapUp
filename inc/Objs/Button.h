@@ -47,7 +47,7 @@ private:
 bool visibility;
 int width;
 
-CLASS_END
+CLASS_END(Button)
 #undef CURRENT_CLASS_NAME// remember to clear macros
 
 #endif//XWRAPUP_BUTTON_H
