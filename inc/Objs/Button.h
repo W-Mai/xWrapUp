@@ -10,7 +10,7 @@
 
 #define CURRENT_CLASS_NAME Button
 
-BASE_CLASS_BEGIN(Button, { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
+CLASS_BEGIN(Button, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 
 public:
 Button() = default;
@@ -47,7 +47,7 @@ private:
 bool visibility;
 int width;
 
-BASE_CLASS_END
+CLASS_END
 #undef CURRENT_CLASS_NAME// remember to clear macros
 
 #endif//XWRAPUP_BUTTON_H

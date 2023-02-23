@@ -26,9 +26,12 @@
         CURRENT_CLASS_NAME::ATTR_FUNC_PACK>                                    \
         CURRENT_CLASS_NAME::ATTR_MAP_NAME
 
+#define OBJ_BASE_CONSTRUCTOR(CLASS)
+#define OBJ_CONSTRUCTOR() : public ObjBase
+#define OBJ_CONSTRUCTOR_EX(...) : __VA_ARGS__
 
-#define BASE_CLASS_BEGIN(CLASS_NAME, ...)                                      \
-    class CLASS_NAME {                                                         \
+#define CLASS_BEGIN(CLASS_NAME, HEADER_CONSTRUCTOR, ...)                       \
+    class CLASS_NAME HEADER_CONSTRUCTOR {                                      \
     public:                                                                    \
         using CLASS_FUNC_TYPE = void (CLASS_NAME::*)();                        \
         struct ATTR_FUNC_PACK {                                                \
@@ -40,7 +43,7 @@
         CLASS_OBJ_INIT(__VA_ARGS__)                                            \
     private:
 
-#define BASE_CLASS_END                                                         \
+#define CLASS_END                                                              \
     }                                                                          \
     ;
 

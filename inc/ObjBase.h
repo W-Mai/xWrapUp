@@ -11,7 +11,7 @@
 
 #define CURRENT_CLASS_NAME ObjBase
 
-BASE_CLASS_BEGIN(ObjBase, {
+CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
     CLASS_OBJ_INIT_ITEM(show);
     CLASS_OBJ_INIT_ITEM(hide);
     CLASS_OBJ_INIT_ITEM(visible);
@@ -58,6 +58,6 @@ private:
 bool visibility;
 int width;
 
-BASE_CLASS_END
+CLASS_END
 #undef CURRENT_CLASS_NAME// remember to clear macros
 #endif                   // XWRAPUP_OBJBASE_H
