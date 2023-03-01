@@ -8,16 +8,21 @@ IDGenerator::IDGenerator(IDType stp) {
     IDGenerator::step = stp;
     current           = 0;
 }
-IDGenerator::operator IDType() { return current += step; }
+IDGenerator::operator IDType() { return get(); }
 IDGenerator &IDGenerator::operator=(IDGenerator::IDType val) {
-    if (current > val) {
-        current += step;
-    } else {
-        current = val;
-    }
+    set(val);
     return *this;
 }
 IDGenerator &IDGenerator::instance() {
-    if (gen == nullptr) { gen = new IDGenerator(STEP); }
-    return *gen;
+    static auto ins = new IDGenerator(STEP);
+    return *ins;
+}
+IDGenerator::IDType IDGenerator::get() { return instance().current++; }
+IDGenerator::IDType IDGenerator::set(IDGenerator::IDType val) {
+    instance().current = val;
+    return instance().current;
+}
+IDGenerator::IDType IDGenerator::bump() {
+    instance().current += instance().step;
+    return instance().current;
 }

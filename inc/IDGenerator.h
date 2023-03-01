@@ -12,9 +12,8 @@ public:
 
 
 private:
-    static IDType step;
-    static IDType current;
-    IDGenerator *gen = nullptr;
+    IDType step;
+    IDType current;
 
 public:
     explicit IDGenerator(IDType stp);
@@ -22,7 +21,11 @@ public:
     explicit operator IDType();
     IDGenerator &operator=(IDType val);
 
-    IDGenerator &instance();
+    static IDType get();
+    static IDType set(IDType val);
+    static IDType bump();
+
+    static IDGenerator &instance();
 };
 
 static const IDGenerator::IDType STEP = 100;
