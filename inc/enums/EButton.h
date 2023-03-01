@@ -8,13 +8,12 @@
 #include "Utils.h"
 #define CURRENT_CLASS_NAME Button
 
-FUNC_ENUM({
-
-});
+FUNC_ENUM({ IDGEN_START(200); })
 
 ATTR_ENUM({
-    ATTR_ENUM_ITEM(Test),
-});
+    IDGEN_START(250);
+    ATTR_ENUM_ITEM(Test);
+})
 
 #undef CURRENT_CLASS_NAME// remember to clear macros
 

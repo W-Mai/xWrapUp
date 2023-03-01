@@ -9,14 +9,18 @@
 #define CURRENT_CLASS_NAME ObjBase
 
 FUNC_ENUM({
-    FUNC_ENUM_ITEM(show),
-    FUNC_ENUM_ITEM(hide),
-    FUNC_ENUM_ITEM(visible),
-});
+    IDGEN_START(100);
+
+    FUNC_ENUM_ITEM(show);
+    FUNC_ENUM_ITEM(hide);
+    FUNC_ENUM_ITEM(visible);
+})
 
 ATTR_ENUM({
-    ATTR_ENUM_ITEM(Width),
-});
+    IDGEN_START(150);
+
+    ATTR_ENUM_ITEM(Width);
+})
 
 #undef CURRENT_CLASS_NAME// remember to clear macros
 #endif                   // XWRAPUP_EOBJBASE_H

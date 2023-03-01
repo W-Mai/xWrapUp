@@ -23,20 +23,16 @@ public:
 ObjBase() = default;
 
 template<class T, class... ARGS>
-T getAttr(uint32_t id, ARGS... args) {
-    auto id_       = (ATTR_ENUM_NAME(CURRENT_CLASS_NAME)) id;
-
-    auto func_pack = ATTR_MAP_NAME.find(id_);
+T getAttr(IDType id, ARGS... args) {
+    auto func_pack = ATTR_MAP_NAME.find(id);
     if (func_pack == ATTR_MAP_NAME.end()) return T{};
     auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.get;
     return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
-void setAttr(uint32_t id, ARGS... args) {
-    auto id_       = (ATTR_ENUM_NAME(CURRENT_CLASS_NAME)) id;
-
-    auto func_pack = ATTR_MAP_NAME.find(id_);
+void setAttr(IDType id, ARGS... args) {
+    auto func_pack = ATTR_MAP_NAME.find(id);
     if (func_pack == ATTR_MAP_NAME.end()) return;
     auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.set;
 
@@ -44,10 +40,8 @@ void setAttr(uint32_t id, ARGS... args) {
 }
 
 template<class T, class... ARGS>
-T exec(uint32_t id, ARGS... args) {
-    auto id_       = (FUNC_ENUM_NAME(CURRENT_CLASS_NAME)) id;
-
-    auto func_iter = FUNC_MAP_NAME.find(id_);
+T exec(IDType id, ARGS... args) {
+    auto func_iter = FUNC_MAP_NAME.find(id);
     if (func_iter == FUNC_MAP_NAME.end()) return T();
     auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_iter->second;
 

@@ -4,26 +4,24 @@
 
 #ifndef XWRAPUP_UTILS_H
 #define XWRAPUP_UTILS_H
+#include "IDGenerator.h"
 
+using IDType = IDGenerator::IDType;
 
 #define MAP_TYPE std::map
 #define FUNC_MAP_NAME func_map
 #define ATTR_MAP_NAME attr_map
 #define DECL_FUNC_MAP(CLASS_NAME)                                              \
-    static MAP_TYPE<FUNC_ENUM_NAME(CLASS_NAME), CLASS_FUNC_TYPE> FUNC_MAP_NAME
+    static MAP_TYPE<IDType, CLASS_FUNC_TYPE> FUNC_MAP_NAME
 #define DECL_ATTR_MAP(CLASS_NAME)                                              \
-    static MAP_TYPE<ATTR_ENUM_NAME(CLASS_NAME), ATTR_FUNC_PACK> ATTR_MAP_NAME
+    static MAP_TYPE<IDType, ATTR_FUNC_PACK> ATTR_MAP_NAME
 
 #define DEFI_FUNC_MAP                                                          \
-    MAP_TYPE<                                                                  \
-        FUNC_ENUM_NAME(CURRENT_CLASS_NAME),                                    \
-        void (CURRENT_CLASS_NAME::*)()>                                        \
+    MAP_TYPE<IDType, void (CURRENT_CLASS_NAME::*)()>                           \
         CURRENT_CLASS_NAME::FUNC_MAP_NAME
 
 #define DEFI_ATTR_MAP                                                          \
-    MAP_TYPE<                                                                  \
-        ATTR_ENUM_NAME(CURRENT_CLASS_NAME),                                    \
-        CURRENT_CLASS_NAME::ATTR_FUNC_PACK>                                    \
+    MAP_TYPE<IDType, CURRENT_CLASS_NAME::ATTR_FUNC_PACK>                       \
         CURRENT_CLASS_NAME::ATTR_MAP_NAME
 
 #define OBJ_BASE_CONSTRUCTOR(CLASS)
@@ -65,13 +63,15 @@ public:                                                                        \
     }
 
 #define FUNC_ENUM_NAME(NAME) __CONCAT(ENUM_FUNC_, NAME)
-#define FUNC_ENUM(...) enum class FUNC_ENUM_NAME(CURRENT_CLASS_NAME) __VA_ARGS__
-#define FUNC_ENUM_ITEM(NAME) NAME
+#define FUNC_ENUM(...) namespace FUNC_ENUM_NAME(CURRENT_CLASS_NAME) __VA_ARGS__
+#define FUNC_ENUM_ITEM(NAME) const IDType NAME = IDGenerator::get()
 #define FE(CLASS) (uint32_t) FUNC_ENUM_NAME(CLASS)::
 
 #define ATTR_ENUM_NAME(NAME) __CONCAT(ENUM_ATTR_, NAME)
-#define ATTR_ENUM(...) enum class ATTR_ENUM_NAME(CURRENT_CLASS_NAME) __VA_ARGS__
-#define ATTR_ENUM_ITEM(NAME) NAME
+#define ATTR_ENUM(...) namespace ATTR_ENUM_NAME(CURRENT_CLASS_NAME) __VA_ARGS__
+#define ATTR_ENUM_ITEM(NAME) const IDType NAME = IDGenerator::get()
 #define AE(CLASS) (uint32_t) ATTR_ENUM_NAME(CLASS)::
+
+#define IDGEN_START(X) const IDType _ = IDGenerator::set((X))
 
 #endif//XWRAPUP_UTILS_H
