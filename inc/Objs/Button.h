@@ -5,6 +5,7 @@
 #ifndef XWRAPUP_BUTTON_H
 #define XWRAPUP_BUTTON_H
 
+#include "ObjBase.h"
 #include "enums/EButton.h"
 
 #define CURRENT_CLASS_NAME Button

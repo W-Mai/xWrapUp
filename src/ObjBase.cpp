@@ -2,7 +2,7 @@
 // Created by W-Mai on 2023/2/22.
 //
 
-#include "ObjBase.h"
+#include "Objs/ObjBase.h"
 
 #define CURRENT_CLASS_NAME ObjBase
 
