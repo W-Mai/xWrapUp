@@ -17,22 +17,19 @@ Button() = default;
 
 template<class T, class... ARGS>
 T getAttr(IDType id, ARGS... args) {
-    auto func_pack = attr_map[id];
-    auto func      = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack.get;
+    auto func = FETCH_ATTR_GET_FUNC();
     return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
 void setAttr(IDType id, ARGS... args) {
-    auto func_pack = attr_map[id];
-    auto func      = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack.set;
+    auto func = FETCH_ATTR_SET_FUNC();
     return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
 T exec(IDType id, ARGS... args) {
-    auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_map[id];
-
+    auto func = FETCH_EXEC_FUNC();
     return (this->*func)(args...);
 }
 

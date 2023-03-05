@@ -74,4 +74,25 @@ public:                                                                        \
 
 #define IDGEN_START(X) const IDType _ = IDGenerator::set((X))
 
+#define FETCH_ATTR_GET_FUNC()                                                  \
+    ({                                                                         \
+        auto func_pack = ATTR_MAP_NAME.find(id);                               \
+        if (func_pack == ATTR_MAP_NAME.end()) return T();                      \
+        (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.get;             \
+    });
+
+#define FETCH_ATTR_SET_FUNC()                                                  \
+    ({                                                                         \
+        auto func_pack = ATTR_MAP_NAME.find(id);                               \
+        if (func_pack == ATTR_MAP_NAME.end()) return;                          \
+        (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.set;             \
+    })
+
+#define FETCH_EXEC_FUNC()                                                      \
+    ({                                                                         \
+        auto func_iter = FUNC_MAP_NAME.find(id);                               \
+        if (func_iter == FUNC_MAP_NAME.end()) return T();                      \
+        (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_iter->second;                 \
+    });
+
 #endif//XWRAPUP_UTILS_H

@@ -24,27 +24,19 @@ ObjBase() = default;
 
 template<class T, class... ARGS>
 T getAttr(IDType id, ARGS... args) {
-    auto func_pack = ATTR_MAP_NAME.find(id);
-    if (func_pack == ATTR_MAP_NAME.end()) return T{};
-    auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.get;
+    auto func = FETCH_ATTR_GET_FUNC();
     return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
 void setAttr(IDType id, ARGS... args) {
-    auto func_pack = ATTR_MAP_NAME.find(id);
-    if (func_pack == ATTR_MAP_NAME.end()) return;
-    auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.set;
-
+    auto func = FETCH_ATTR_SET_FUNC();
     return (this->*(func))(args...);
 }
 
 template<class T, class... ARGS>
 T exec(IDType id, ARGS... args) {
-    auto func_iter = FUNC_MAP_NAME.find(id);
-    if (func_iter == FUNC_MAP_NAME.end()) return T();
-    auto func = (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_iter->second;
-
+    auto func = FETCH_EXEC_FUNC();
     return (this->*func)(args...);
 }
 
