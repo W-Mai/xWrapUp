@@ -16,18 +16,6 @@ public:
 Button() = default;
 
 template<class T, class... ARGS>
-T getAttr(IDType id, ARGS... args) {
-    auto func = FETCH_ATTR_GET_FUNC();
-    return (this->*(func))(args...);
-}
-
-template<class T, class... ARGS>
-void setAttr(IDType id, ARGS... args) {
-    auto func = FETCH_ATTR_SET_FUNC();
-    return (this->*(func))(args...);
-}
-
-template<class T, class... ARGS>
 T exec(IDType id, ARGS... args) {
     auto func = FETCH_EXEC_FUNC();
     return (this->*func)(args...);
@@ -36,8 +24,19 @@ T exec(IDType id, ARGS... args) {
 void registerCb() {}
 
 protected:
-int getTest() { return width; }
-void setTest(int val) { width = val; }
+ErrorCode getAttr(IDType id, void *ret_val, va_list vars) override;
+ErrorCode setAttr(IDType id, void *ret_val, va_list vars) override;
+ErrorCode exec(IDType id, void *ret_val, va_list vars) override;
+
+protected:
+ErrorCode getTest(int *ret_val, va_list vars) {
+    *ret_val = width;
+    return ErrorCode::OK;
+}
+ErrorCode setTest(void *ret_val, va_list vars) {
+    width = va_arg(vars, int);
+    return ErrorCode::OK;
+}
 
 private:
 bool visibility;

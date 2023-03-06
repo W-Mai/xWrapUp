@@ -22,33 +22,59 @@ CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
 public:
 ObjBase() = default;
 
-template<class T, class... ARGS>
-T getAttr(IDType id, ARGS... args) {
-    auto func = FETCH_ATTR_GET_FUNC();
-    return (this->*(func))(args...);
+virtual ErrorCode getAttr(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = getAttr(id, ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
-template<class T, class... ARGS>
-void setAttr(IDType id, ARGS... args) {
-    auto func = FETCH_ATTR_SET_FUNC();
-    return (this->*(func))(args...);
+virtual ErrorCode setAttr(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = setAttr(id, ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
-template<class T, class... ARGS>
-T exec(IDType id, ARGS... args) {
-    auto func = FETCH_EXEC_FUNC();
-    return (this->*func)(args...);
+virtual ErrorCode exec(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = exec(id, ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
 void registerCb() {}
 
 protected:
-void show() { visibility = true; }
-void hide() { visibility = false; }
-bool visible() const { return visibility; }
+virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars);
+virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars);
+virtual ErrorCode exec(IDType id, void *ret_val, va_list vars);
 
-int getWidth() { return width; }
-void setWidth(int val) { width = val; }
+protected:
+ErrorCode show(int * /*ret_val*/, va_list /*vars*/) {
+    visibility = true;
+    return ErrorCode::OK;
+}
+ErrorCode hide(int * /*ret_val*/, va_list /*vars*/) {
+    visibility = false;
+    return ErrorCode::OK;
+}
+ErrorCode visible(int *ret_val, va_list vars) const {
+    *ret_val = visibility;
+    return ErrorCode::OK;
+}
+
+ErrorCode getWidth(int *ret_val, va_list vars) {
+    *ret_val = width;
+    return ErrorCode::OK;
+}
+ErrorCode setWidth(void *ret_val, va_list vars) {
+    width = va_arg(vars, int);
+    return ErrorCode::OK;
+}
 
 private:
 bool visibility;
