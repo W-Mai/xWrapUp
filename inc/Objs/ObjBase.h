@@ -23,19 +23,17 @@ public:
 ObjBase() = default;
 
 virtual ErrorCode getAttr(IDType id, void *ret_val, ...) {
-    auto func = FETCH_ATTR_GET_FUNC();
     va_list vars;
     va_start(vars, ret_val);
-    auto code = (this->*(func))(ret_val, vars);
+    auto code = getAttr(id, ret_val, vars);
     va_end(vars);
     return code;
 }
 
 virtual ErrorCode setAttr(IDType id, void *ret_val, ...) {
-    auto func = FETCH_ATTR_SET_FUNC();
     va_list vars;
     va_start(vars, ret_val);
-    auto code = (this->*(func))(ret_val, vars);
+    auto code = setAttr(id, ret_val, vars);
     va_end(vars);
     return code;
 }
@@ -47,6 +45,19 @@ T exec(IDType id, ARGS... args) {
 }
 
 void registerCb() {}
+
+protected:
+virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars) {
+    auto func = FETCH_ATTR_FUNC(get);
+    if (func == nullptr) return ErrorCode::Error;
+    return (this->*(func))(ret_val, vars);
+}
+
+virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars) {
+    auto func = FETCH_ATTR_FUNC(set);
+    if (func == nullptr) return ErrorCode::Error;
+    return (this->*(func))(ret_val, vars);
+}
 
 protected:
 void show() { visibility = true; }

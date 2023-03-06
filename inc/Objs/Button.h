@@ -15,24 +15,6 @@ CLASS_BEGIN(Button, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 public:
 Button() = default;
 
-ErrorCode getAttr(IDType id, void *ret_val, ...) {
-    auto func = FETCH_ATTR_GET_FUNC();
-    va_list vars;
-    va_start(vars, ret_val);
-    auto code = (this->*(func))(ret_val, vars);
-    va_end(vars);
-    return code;
-}
-
-ErrorCode setAttr(IDType id, void *ret_val, ...) {
-    auto func = FETCH_ATTR_SET_FUNC();
-    va_list vars;
-    va_start(vars, ret_val);
-    auto code = (this->*(func))(ret_val, vars);
-    va_end(vars);
-    return code;
-}
-
 template<class T, class... ARGS>
 T exec(IDType id, ARGS... args) {
     auto func = FETCH_EXEC_FUNC();
@@ -40,6 +22,19 @@ T exec(IDType id, ARGS... args) {
 }
 
 void registerCb() {}
+
+protected:
+ErrorCode getAttr(IDType id, void *ret_val, va_list vars) override {
+    auto func = FETCH_ATTR_FUNC(get);
+    if (func == nullptr) return ObjBase::getAttr(id, ret_val, vars);
+    return (this->*(func))(ret_val, vars);
+}
+
+ErrorCode setAttr(IDType id, void *ret_val, va_list vars) override {
+    auto func = FETCH_ATTR_FUNC(set);
+    if (func == nullptr) return ObjBase::setAttr(id, ret_val, vars);
+    return (this->*(func))(ret_val, vars);
+}
 
 protected:
 ErrorCode getTest(int *ret_val, va_list vars) {

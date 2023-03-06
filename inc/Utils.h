@@ -17,9 +17,8 @@ using IDType = IDGenerator::IDType;
     static MAP_TYPE<IDType, ATTR_FUNC_PACK> ATTR_MAP_NAME
 
 #define DEFI_FUNC_MAP                                                          \
-    MAP_TYPE<IDType, void (CURRENT_CLASS_NAME::*)()>                           \
+    MAP_TYPE<IDType, CURRENT_CLASS_NAME::CLASS_FUNC_TYPE>                      \
         CURRENT_CLASS_NAME::FUNC_MAP_NAME
-
 #define DEFI_ATTR_MAP                                                          \
     MAP_TYPE<IDType, CURRENT_CLASS_NAME::ATTR_FUNC_PACK>                       \
         CURRENT_CLASS_NAME::ATTR_MAP_NAME
@@ -31,7 +30,7 @@ using IDType = IDGenerator::IDType;
 #define CLASS_BEGIN(CLASS_NAME, HEADER_CONSTRUCTOR, ...)                       \
     class CLASS_NAME HEADER_CONSTRUCTOR {                                      \
     public:                                                                    \
-        using CLASS_FUNC_TYPE = void (CLASS_NAME::*)();                        \
+        using CLASS_FUNC_TYPE = ErrorCode (CLASS_NAME::*)(void *, va_list);    \
         struct ATTR_FUNC_PACK {                                                \
             CLASS_FUNC_TYPE get;                                               \
             CLASS_FUNC_TYPE set;                                               \
@@ -74,20 +73,13 @@ public:                                                                        \
 
 #define IDGEN_START(X) const IDType _ = IDGenerator::set((X))
 
-#define FETCH_ATTR_GET_FUNC()                                                  \
+#define FETCH_ATTR_FUNC(TYPE)                                                  \
     ({                                                                         \
-        auto func_pack = ATTR_MAP_NAME.find(id);                               \
-        if (func_pack == ATTR_MAP_NAME.end()) return ErrorCode::Error;         \
-        (ErrorCode(CURRENT_CLASS_NAME::*)(void *ret_val, va_list vars))        \
-            func_pack->second.get;                                             \
-    })
-
-#define FETCH_ATTR_SET_FUNC()                                                  \
-    ({                                                                         \
-        auto func_pack = ATTR_MAP_NAME.find(id);                               \
-        if (func_pack == ATTR_MAP_NAME.end()) return ErrorCode::Error;         \
-        (ErrorCode(CURRENT_CLASS_NAME::*)(void *ret_val, va_list vars))        \
-            func_pack->second.set;                                             \
+        auto __func_pack       = ATTR_MAP_NAME.find(id);                       \
+        CLASS_FUNC_TYPE __func = nullptr;                                      \
+        if (__func_pack != ATTR_MAP_NAME.end())                                \
+            __func = __func_pack->second.TYPE;                                 \
+        __func;                                                                \
     })
 
 #define FETCH_EXEC_FUNC()                                                      \
