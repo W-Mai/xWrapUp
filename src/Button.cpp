@@ -26,3 +26,13 @@ ErrorCode Button::exec(IDType id, void *ret_val, va_list vars) {
     if (func == nullptr) return ObjBase::exec(id, ret_val, vars);
     return (this->*(func))(ret_val, vars);
 }
+
+ErrorCode Button::getTest(int *ret_val, va_list vars) {
+    *ret_val = width;
+    return ErrorCode::OK;
+}
+
+ErrorCode Button::setTest(void *ret_val, va_list vars) {
+    width = va_arg(vars, int);
+    return ErrorCode::OK;
+}

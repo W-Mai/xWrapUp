@@ -46,7 +46,7 @@ virtual ErrorCode exec(IDType id, void *ret_val, ...) {
     return code;
 }
 
-void registerCb() {}
+//void registerCb() {}
 
 protected:
 virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars);
@@ -54,31 +54,16 @@ virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars);
 virtual ErrorCode exec(IDType id, void *ret_val, va_list vars);
 
 protected:
-ErrorCode show(int * /*ret_val*/, va_list /*vars*/) {
-    visibility = true;
-    return ErrorCode::OK;
-}
-ErrorCode hide(int * /*ret_val*/, va_list /*vars*/) {
-    visibility = false;
-    return ErrorCode::OK;
-}
-ErrorCode visible(int *ret_val, va_list vars) const {
-    *ret_val = visibility;
-    return ErrorCode::OK;
-}
+ErrorCode show(int * /*ret_val*/, va_list /*vars*/);
+ErrorCode hide(int * /*ret_val*/, va_list /*vars*/);
+ErrorCode visible(int *ret_val, va_list vars) const;
 
-ErrorCode getWidth(int *ret_val, va_list vars) {
-    *ret_val = width;
-    return ErrorCode::OK;
-}
-ErrorCode setWidth(void *ret_val, va_list vars) {
-    width = va_arg(vars, int);
-    return ErrorCode::OK;
-}
+ErrorCode getWidth(int *ret_val, va_list vars);
+ErrorCode setWidth(void *ret_val, va_list vars);
 
 private:
-bool visibility;
-int width;
+bool visibility{};
+int width{};
 
 CLASS_END(ObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros

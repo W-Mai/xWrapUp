@@ -26,3 +26,25 @@ ErrorCode ObjBase::exec(IDType id, void *ret_val, va_list vars) {
     if (func == nullptr) return ErrorCode::Error;
     return (this->*(func))(ret_val, vars);
 }
+
+ErrorCode ObjBase::show(int * /*ret_val*/, va_list /*vars*/) {
+    visibility = true;
+    return ErrorCode::OK;
+}
+ErrorCode ObjBase::hide(int * /*ret_val*/, va_list /*vars*/) {
+    visibility = false;
+    return ErrorCode::OK;
+}
+ErrorCode ObjBase::visible(int *ret_val, va_list vars) const {
+    *ret_val = visibility;
+    return ErrorCode::OK;
+}
+
+ErrorCode ObjBase::getWidth(int *ret_val, va_list vars) {
+    *ret_val = width;
+    return ErrorCode::OK;
+}
+ErrorCode ObjBase::setWidth(void *ret_val, va_list vars) {
+    width = va_arg(vars, int);
+    return ErrorCode::OK;
+}
