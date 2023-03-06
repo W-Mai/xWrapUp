@@ -84,9 +84,10 @@ public:                                                                        \
 
 #define FETCH_EXEC_FUNC()                                                      \
     ({                                                                         \
-        auto func_iter = FUNC_MAP_NAME.find(id);                               \
-        if (func_iter == FUNC_MAP_NAME.end()) return T();                      \
-        (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_iter->second;                 \
+        auto __func_iter       = FUNC_MAP_NAME.find(id);                       \
+        CLASS_FUNC_TYPE __func = nullptr;                                      \
+        if (__func_iter != FUNC_MAP_NAME.end()) __func = __func_iter->second;  \
+        __func;                                                                \
     });
 
 enum class ErrorCode {

@@ -38,31 +38,34 @@ virtual ErrorCode setAttr(IDType id, void *ret_val, ...) {
     return code;
 }
 
-template<class T, class... ARGS>
-T exec(IDType id, ARGS... args) {
-    auto func = FETCH_EXEC_FUNC();
-    return (this->*func)(args...);
+virtual ErrorCode exec(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = exec(id, ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
 void registerCb() {}
 
 protected:
-virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars) {
-    auto func = FETCH_ATTR_FUNC(get);
-    if (func == nullptr) return ErrorCode::Error;
-    return (this->*(func))(ret_val, vars);
-}
-
-virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars) {
-    auto func = FETCH_ATTR_FUNC(set);
-    if (func == nullptr) return ErrorCode::Error;
-    return (this->*(func))(ret_val, vars);
-}
+virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars);
+virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars);
+virtual ErrorCode exec(IDType id, void *ret_val, va_list vars);
 
 protected:
-void show() { visibility = true; }
-void hide() { visibility = false; }
-bool visible() const { return visibility; }
+ErrorCode show(int * /*ret_val*/, va_list /*vars*/) {
+    visibility = true;
+    return ErrorCode::OK;
+}
+ErrorCode hide(int * /*ret_val*/, va_list /*vars*/) {
+    visibility = false;
+    return ErrorCode::OK;
+}
+ErrorCode visible(int *ret_val, va_list vars) const {
+    *ret_val = visibility;
+    return ErrorCode::OK;
+}
 
 ErrorCode getWidth(int *ret_val, va_list vars) {
     *ret_val = width;

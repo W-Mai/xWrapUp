@@ -24,17 +24,9 @@ T exec(IDType id, ARGS... args) {
 void registerCb() {}
 
 protected:
-ErrorCode getAttr(IDType id, void *ret_val, va_list vars) override {
-    auto func = FETCH_ATTR_FUNC(get);
-    if (func == nullptr) return ObjBase::getAttr(id, ret_val, vars);
-    return (this->*(func))(ret_val, vars);
-}
-
-ErrorCode setAttr(IDType id, void *ret_val, va_list vars) override {
-    auto func = FETCH_ATTR_FUNC(set);
-    if (func == nullptr) return ObjBase::setAttr(id, ret_val, vars);
-    return (this->*(func))(ret_val, vars);
-}
+ErrorCode getAttr(IDType id, void *ret_val, va_list vars) override;
+ErrorCode setAttr(IDType id, void *ret_val, va_list vars) override;
+ErrorCode exec(IDType id, void *ret_val, va_list vars) override;
 
 protected:
 ErrorCode getTest(int *ret_val, va_list vars) {

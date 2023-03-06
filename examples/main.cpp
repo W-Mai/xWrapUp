@@ -9,14 +9,17 @@ int main() {
     ObjBase::init();
     Button::init();
 
-    ObjBase* objBase;
+    ObjBase *objBase;
     auto button = new Button();
-    objBase = button;
+    objBase     = button;
 
-    objBase->exec<void>(FE(ObjBase) show);
-    std::cout << objBase->exec<bool>(FE(ObjBase) visible) << std::endl;
-    objBase->exec<void>(FE(ObjBase) hide);
-    std::cout << objBase->exec<bool>(FE(ObjBase) visible) << std::endl;
+    bool val_bool;
+    objBase->exec(FE(ObjBase) show, nullptr);
+    objBase->exec(FE(ObjBase) visible, &val_bool);
+    std::cout << val_bool << std::endl;
+    objBase->exec(FE(ObjBase) hide, nullptr);
+    objBase->exec(FE(ObjBase) visible, &val_bool);
+    std::cout << val_bool << std::endl;
 
     objBase->setAttr(AE(Button) Test, nullptr, 20);
     int val;
