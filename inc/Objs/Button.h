@@ -15,16 +15,22 @@ CLASS_BEGIN(Button, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 public:
 Button() = default;
 
-template<class T, class... ARGS>
-T getAttr(IDType id, ARGS... args) {
+ErrorCode getAttr(IDType id, void *ret_val, ...) {
     auto func = FETCH_ATTR_GET_FUNC();
-    return (this->*(func))(args...);
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = (this->*(func))(ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
-template<class T, class... ARGS>
-void setAttr(IDType id, ARGS... args) {
+ErrorCode setAttr(IDType id, void *ret_val, ...) {
     auto func = FETCH_ATTR_SET_FUNC();
-    return (this->*(func))(args...);
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = (this->*(func))(ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
 template<class T, class... ARGS>
@@ -36,8 +42,14 @@ T exec(IDType id, ARGS... args) {
 void registerCb() {}
 
 protected:
-int getTest() { return width; }
-void setTest(int val) { width = val; }
+ErrorCode getTest(int *ret_val, va_list vars) {
+    *ret_val = width;
+    return ErrorCode::OK;
+}
+ErrorCode setTest(void *ret_val, va_list vars) {
+    width = va_arg(vars, int);
+    return ErrorCode::OK;
+}
 
 private:
 bool visibility;

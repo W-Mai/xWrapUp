@@ -22,16 +22,22 @@ CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
 public:
 ObjBase() = default;
 
-template<class T, class... ARGS>
-T getAttr(IDType id, ARGS... args) {
+virtual ErrorCode getAttr(IDType id, void *ret_val, ...) {
     auto func = FETCH_ATTR_GET_FUNC();
-    return (this->*(func))(args...);
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = (this->*(func))(ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
-template<class T, class... ARGS>
-void setAttr(IDType id, ARGS... args) {
+virtual ErrorCode setAttr(IDType id, void *ret_val, ...) {
     auto func = FETCH_ATTR_SET_FUNC();
-    return (this->*(func))(args...);
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = (this->*(func))(ret_val, vars);
+    va_end(vars);
+    return code;
 }
 
 template<class T, class... ARGS>
@@ -47,8 +53,14 @@ void show() { visibility = true; }
 void hide() { visibility = false; }
 bool visible() const { return visibility; }
 
-int getWidth() { return width; }
-void setWidth(int val) { width = val; }
+ErrorCode getWidth(int *ret_val, va_list vars) {
+    *ret_val = width;
+    return ErrorCode::OK;
+}
+ErrorCode setWidth(void *ret_val, va_list vars) {
+    width = va_arg(vars, int);
+    return ErrorCode::OK;
+}
 
 private:
 bool visibility;

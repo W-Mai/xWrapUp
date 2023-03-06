@@ -77,15 +77,17 @@ public:                                                                        \
 #define FETCH_ATTR_GET_FUNC()                                                  \
     ({                                                                         \
         auto func_pack = ATTR_MAP_NAME.find(id);                               \
-        if (func_pack == ATTR_MAP_NAME.end()) return T();                      \
-        (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.get;             \
-    });
+        if (func_pack == ATTR_MAP_NAME.end()) return ErrorCode::Error;         \
+        (ErrorCode(CURRENT_CLASS_NAME::*)(void *ret_val, va_list vars))        \
+            func_pack->second.get;                                             \
+    })
 
 #define FETCH_ATTR_SET_FUNC()                                                  \
     ({                                                                         \
         auto func_pack = ATTR_MAP_NAME.find(id);                               \
-        if (func_pack == ATTR_MAP_NAME.end()) return;                          \
-        (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_pack->second.set;             \
+        if (func_pack == ATTR_MAP_NAME.end()) return ErrorCode::Error;         \
+        (ErrorCode(CURRENT_CLASS_NAME::*)(void *ret_val, va_list vars))        \
+            func_pack->second.set;                                             \
     })
 
 #define FETCH_EXEC_FUNC()                                                      \
@@ -95,4 +97,9 @@ public:                                                                        \
         (T(CURRENT_CLASS_NAME::*)(ARGS...)) func_iter->second;                 \
     });
 
+enum class ErrorCode {
+    Done  = 0,// Don't Care
+    OK    = 1,// Right
+    Error = 2,// Failed
+};
 #endif//XWRAPUP_UTILS_H
