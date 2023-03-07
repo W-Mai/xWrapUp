@@ -69,7 +69,7 @@ public:                                                                        \
 #define ATTR_ENUM_NAME(NAME) __CONCAT(ENUM_ATTR_, NAME)
 #define ATTR_ENUM(...) namespace ATTR_ENUM_NAME(CURRENT_CLASS_NAME) __VA_ARGS__
 #define ATTR_ENUM_ITEM(NAME) const IDType NAME = IDGenerator::get()
-#define AE(CLASS) (uint32_t) ATTR_ENUM_NAME(CLASS)::
+#define AE(CLASS) (IDType) ATTR_ENUM_NAME(CLASS)::
 
 #define IDGEN_START(X) const IDType _ = IDGenerator::set((X))
 
