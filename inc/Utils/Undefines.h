@@ -1,0 +1,40 @@
+//
+// Created by W-Mai on 2023/3/7.
+//
+
+#ifndef XWRAPUP_UNDEFINES_H
+#define XWRAPUP_UNDEFINES_H
+
+#undef MAP_TYPE
+#undef FUNC_MAP_NAME
+#undef ATTR_MAP_NAME
+#undef DECL_FUNC_MAP
+#undef DECL_ATTR_MAP
+#undef DEFI_FUNC_MAP
+#undef DEFI_ATTR_MAP
+#undef OBJ_BASE_CONSTRUCTOR
+#undef OBJ_CONSTRUCTOR
+#undef OBJ_CONSTRUCTOR_EX
+
+#undef CLASS_BEGIN
+
+#undef CLASS_END
+
+#undef CLASS_OBJ_INIT
+
+#undef CLASS_OBJ_INIT_ITEM
+#undef CLASS_OBJ_INIT_ITEM_ATTR
+
+#undef FUNC_ENUM
+#undef FUNC_ENUM_ITEM
+
+#undef ATTR_ENUM
+#undef ATTR_ENUM_ITEM
+
+#undef IDGEN_START
+
+#undef FETCH_ATTR_FUNC
+
+#undef FETCH_EXEC_FUNC
+
+#endif//XWRAPUP_UNDEFINES_H

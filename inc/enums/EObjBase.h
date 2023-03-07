@@ -5,7 +5,7 @@
 #ifndef XWRAPUP_EOBJBASE_H
 #define XWRAPUP_EOBJBASE_H
 
-#include "Utils.h"
+#include "Utils/Utils.h"
 #define CURRENT_CLASS_NAME ObjBase
 
 FUNC_ENUM({
