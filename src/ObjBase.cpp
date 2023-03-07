@@ -9,6 +9,30 @@
 DEFI_FUNC_MAP;
 DEFI_ATTR_MAP;
 
+ErrorCode ObjBase::getAttr(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = getAttr(id, ret_val, vars);
+    va_end(vars);
+    return code;
+}
+
+ErrorCode ObjBase::setAttr(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = setAttr(id, ret_val, vars);
+    va_end(vars);
+    return code;
+}
+
+ErrorCode ObjBase::exec(IDType id, void *ret_val, ...) {
+    va_list vars;
+    va_start(vars, ret_val);
+    auto code = exec(id, ret_val, vars);
+    va_end(vars);
+    return code;
+}
+
 ErrorCode ObjBase::getAttr(IDType id, void *ret_val, va_list vars) {
     auto func = FETCH_ATTR_FUNC(get);
     if (func == nullptr) return ErrorCode::Error;

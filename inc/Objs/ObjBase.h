@@ -22,29 +22,9 @@ CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
 public:
 ObjBase() = default;
 
-virtual ErrorCode getAttr(IDType id, void *ret_val, ...) {
-    va_list vars;
-    va_start(vars, ret_val);
-    auto code = getAttr(id, ret_val, vars);
-    va_end(vars);
-    return code;
-}
-
-virtual ErrorCode setAttr(IDType id, void *ret_val, ...) {
-    va_list vars;
-    va_start(vars, ret_val);
-    auto code = setAttr(id, ret_val, vars);
-    va_end(vars);
-    return code;
-}
-
-virtual ErrorCode exec(IDType id, void *ret_val, ...) {
-    va_list vars;
-    va_start(vars, ret_val);
-    auto code = exec(id, ret_val, vars);
-    va_end(vars);
-    return code;
-}
+virtual ErrorCode getAttr(IDType id, void *ret_val, ...);
+virtual ErrorCode setAttr(IDType id, void *ret_val, ...);
+virtual ErrorCode exec(IDType id, void *ret_val, ...);
 
 //void registerCb() {}
 
