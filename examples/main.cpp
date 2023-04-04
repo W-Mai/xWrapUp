@@ -34,5 +34,7 @@ int main() {
               << std::endl;
     std::cout << val << std::endl;
 
+    std::cout << objBase->type() << std::endl;
+
     return 0;
 }

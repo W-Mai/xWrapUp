@@ -9,6 +9,7 @@
 using IDType = IDGenerator::IDType;
 
 #define MAP_TYPE std::map
+
 #define FUNC_MAP_NAME func_map
 #define ATTR_MAP_NAME attr_map
 #define DECL_FUNC_MAP(CLASS_NAME)                                              \
@@ -38,7 +39,12 @@ using IDType = IDGenerator::IDType;
         DECL_FUNC_MAP(CLASS_NAME);                                             \
         DECL_ATTR_MAP(CLASS_NAME);                                             \
         CLASS_OBJ_INIT(__VA_ARGS__)                                            \
-    private:
+        virtual const char *type() { return __type; }                          \
+        virtual void *native() { return __native; }                            \
+                                                                               \
+    private:                                                                   \
+        const char *__type = #CLASS_NAME;                                      \
+        void *__native     = nullptr;
 
 #define CLASS_END(CLASS_NAME)                                                  \
     }                                                                          \
