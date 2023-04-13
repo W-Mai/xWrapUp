@@ -17,11 +17,11 @@ CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
     CLASS_OBJ_INIT_ITEM(visible);
 
     CLASS_OBJ_INIT_ITEM_ATTR(Width);
+    CLASS_OBJ_INIT_ITEM_ATTR(Height);
 })
 
 public:
 ObjBase() = default;
-
 virtual ErrorCode getAttr(IDType id, void *ret_val, ...);
 virtual ErrorCode setAttr(IDType id, void *ret_val, ...);
 virtual ErrorCode exec(IDType id, void *ret_val, ...);
@@ -40,10 +40,13 @@ ErrorCode visible(int *ret_val, va_list vars) const;
 
 ErrorCode getWidth(int *ret_val, va_list vars);
 ErrorCode setWidth(void *ret_val, va_list vars);
+ErrorCode getHeight(int *ret_val, va_list vars);
+ErrorCode setHeight(void *ret_val, va_list vars);
 
 private:
 bool visibility{};
 int width{};
+int height{};
 
 CLASS_END(ObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros

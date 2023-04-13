@@ -20,6 +20,7 @@ ATTR_ENUM({
     IDGEN_START(150);
 
     ATTR_ENUM_ITEM(Width);
+    ATTR_ENUM_ITEM(Height);
 })
 
 #undef CURRENT_CLASS_NAME// remember to clear macros

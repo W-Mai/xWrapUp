@@ -72,3 +72,11 @@ ErrorCode ObjBase::setWidth(void *ret_val, va_list vars) {
     width = va_arg(vars, int);
     return ErrorCode::OK;
 }
+ErrorCode ObjBase::getHeight(int *ret_val, va_list vars) {
+    *ret_val = height;
+    return ErrorCode::OK;
+}
+ErrorCode ObjBase::setHeight(void *ret_val, va_list vars) {
+    height = va_arg(vars, int);
+    return ErrorCode::OK;
+}
