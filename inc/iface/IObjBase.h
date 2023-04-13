@@ -2,16 +2,16 @@
 // Created by W-Mai on 2023/2/21.
 //
 
-#ifndef XWRAPUP_OBJBASE_H
-#define XWRAPUP_OBJBASE_H
+#ifndef XWRAPUP_IOBJBASE_H
+#define XWRAPUP_IOBJBASE_H
 
 #include <map>
 
 #include "enums/EObjBase.h"
 
-#define CURRENT_CLASS_NAME ObjBase
+#define CURRENT_CLASS_NAME IObjBase
 
-CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
+CLASS_BEGIN(IObjBase, OBJ_BASE_CONSTRUCTOR(), {
     CLASS_OBJ_INIT_ITEM(show);
     CLASS_OBJ_INIT_ITEM(hide);
     CLASS_OBJ_INIT_ITEM(visible);
@@ -21,7 +21,7 @@ CLASS_BEGIN(ObjBase, OBJ_BASE_CONSTRUCTOR(), {
 })
 
 public:
-ObjBase() = default;
+IObjBase() = default;
 virtual ErrorCode getAttr(IDType id, void *ret_val, ...);
 virtual ErrorCode setAttr(IDType id, void *ret_val, ...);
 virtual ErrorCode exec(IDType id, void *ret_val, ...);
@@ -48,6 +48,6 @@ bool visibility{};
 int width{};
 int height{};
 
-CLASS_END(ObjBase)
+CLASS_END(IObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros
-#endif                   // XWRAPUP_OBJBASE_H
+#endif                   // XWRAPUP_IOBJBASE_H

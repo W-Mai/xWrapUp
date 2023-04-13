@@ -6,31 +6,31 @@
 #include <xWrapUp.h>
 
 template<class T, class... ARGS>
-T exec(ObjBase *obj, IDType id, ARGS... args) {
+T exec(IObjBase *obj, IDType id, ARGS... args) {
     T rtn{};
     obj->exec(id, &rtn, args...);
     return rtn;
 }
 
 int main() {
-    ObjBase::init();
-    Button::init();
+    IObjBase::init();
+    IButton::init();
 
-    ObjBase *objBase;
-    auto button  = new Button();
+    IObjBase *objBase;
+    auto button  = new IButton();
     objBase      = button;
 
     bool visible = false;
-    objBase->exec(FE(ObjBase) show, nullptr);
-    visible = exec<bool>(objBase, FE(ObjBase) visible);
+    objBase->exec(FE(IObjBase) show, nullptr);
+    visible = exec<bool>(objBase, FE(IObjBase) visible);
     std::cout << "visible: " << visible << std::endl;
-    exec<void *>(objBase, FE(ObjBase) hide);
-    visible = exec<bool>(objBase, FE(ObjBase) visible);
+    exec<void *>(objBase, FE(IObjBase) hide);
+    visible = exec<bool>(objBase, FE(IObjBase) visible);
     std::cout << "visible: " << visible << std::endl;
 
-    objBase->setAttr(AE(Button) Test, nullptr, 20);
+    objBase->setAttr(AE(IButton) Test, nullptr, 20);
     int val;
-    std::cout << (objBase->getAttr(AE(Button) Test, &val) == ErrorCode::Done)
+    std::cout << (objBase->getAttr(AE(IButton) Test, &val) == ErrorCode::Done)
               << std::endl;
     std::cout << val << std::endl;
 

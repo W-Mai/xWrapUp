@@ -5,8 +5,8 @@
 #ifndef XWRAPUP_EBUTTON_H
 #define XWRAPUP_EBUTTON_H
 
-#include "Utils/Utils.h"
-#define CURRENT_CLASS_NAME Button
+#include "utils/Utils.h"
+#define CURRENT_CLASS_NAME IButton
 
 FUNC_ENUM({ IDGEN_START(200); })
 

@@ -25,7 +25,7 @@ using IDType = IDGenerator::IDType;
         CURRENT_CLASS_NAME::ATTR_MAP_NAME
 
 #define OBJ_BASE_CONSTRUCTOR(CLASS)
-#define OBJ_CONSTRUCTOR() : public ObjBase
+#define OBJ_CONSTRUCTOR() : public IObjBase
 #define OBJ_CONSTRUCTOR_EX(...) : __VA_ARGS__
 
 #define CLASS_BEGIN(CLASS_NAME, HEADER_CONSTRUCTOR, ...)                       \
@@ -59,7 +59,7 @@ public:                                                                        \
 
 #define CLASS_OBJ_INIT_ITEM(ITEM_NAME)                                         \
     FUNC_MAP_NAME[FUNC_ENUM_NAME(CURRENT_CLASS_NAME)::ITEM_NAME] =             \
-        (CLASS_FUNC_TYPE) &ObjBase::ITEM_NAME
+        (CLASS_FUNC_TYPE) &CURRENT_CLASS_NAME::ITEM_NAME
 
 #define CLASS_OBJ_INIT_ITEM_ATTR(ITEM_NAME)                                    \
     ATTR_MAP_NAME[ATTR_ENUM_NAME(CURRENT_CLASS_NAME)::ITEM_NAME] = {           \

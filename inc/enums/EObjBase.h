@@ -5,8 +5,8 @@
 #ifndef XWRAPUP_EOBJBASE_H
 #define XWRAPUP_EOBJBASE_H
 
-#include "Utils/Utils.h"
-#define CURRENT_CLASS_NAME ObjBase
+#include "utils/Utils.h"
+#define CURRENT_CLASS_NAME IObjBase
 
 FUNC_ENUM({
     IDGEN_START(100);

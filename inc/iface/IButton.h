@@ -2,18 +2,18 @@
 // Created by W-Mai on 2023/2/22.
 //
 
-#ifndef XWRAPUP_BUTTON_H
-#define XWRAPUP_BUTTON_H
+#ifndef XWRAPUP_IBUTTON_H
+#define XWRAPUP_IBUTTON_H
 
-#include "ObjBase.h"
+#include "IObjBase.h"
 #include "enums/EButton.h"
 
-#define CURRENT_CLASS_NAME Button
+#define CURRENT_CLASS_NAME IButton
 
-CLASS_BEGIN(Button, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
+CLASS_BEGIN(IButton, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 
 public:
-Button() = default;
+IButton() = default;
 
 //void registerCb() {}
 
@@ -30,7 +30,7 @@ private:
 bool visibility{};
 int width{};
 
-CLASS_END(Button)
+CLASS_END(IButton)
 #undef CURRENT_CLASS_NAME// remember to clear macros
 
-#endif//XWRAPUP_BUTTON_H
+#endif//XWRAPUP_IBUTTON_H

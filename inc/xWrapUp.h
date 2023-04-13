@@ -5,8 +5,8 @@
 #ifndef XWRAPUP_XWRAPUP_H
 #define XWRAPUP_XWRAPUP_H
 
-#include "Objs/Button.h"
-#include "Objs/ObjBase.h"
+#include "iface/IButton.h"
+#include "iface/IObjBase.h"
 
-#include "Utils/Undefines.h"
+#include "utils/Undefines.h"
 #endif//XWRAPUP_XWRAPUP_H
