@@ -13,6 +13,7 @@ include_directories(inc)
 file(GLOB
         SOURCES
         src/*.cpp
+        src/iface/*.cpp
         )
 
 add_library(xWrapUp STATIC ${SOURCES})

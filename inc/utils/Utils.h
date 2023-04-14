@@ -77,7 +77,8 @@ public:                                                                        \
 #define ATTR_ENUM_ITEM(NAME) const IDType NAME = IDGenerator::get()
 #define AE(CLASS) (IDType) ATTR_ENUM_NAME(CLASS)::
 
-#define IDGEN_START(X) const IDType _ = IDGenerator::set((X))
+#define IDGEN_START(X) const IDType ENUM_START = IDGenerator::set((X))
+#define IDGEN_END() const IDType ENUM_END = IDGenerator::get()
 
 #define FETCH_ATTR_FUNC(TYPE)                                                  \
     ({                                                                         \

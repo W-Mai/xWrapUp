@@ -8,11 +8,18 @@
 #include "utils/Utils.h"
 #define CURRENT_CLASS_NAME IButton
 
-FUNC_ENUM({ IDGEN_START(200); })
+FUNC_ENUM({
+    IDGEN_START(200);
+
+    IDGEN_END();
+})
 
 ATTR_ENUM({
     IDGEN_START(250);
+
     ATTR_ENUM_ITEM(Test);
+
+    IDGEN_END();
 })
 
 #undef CURRENT_CLASS_NAME// remember to clear macros

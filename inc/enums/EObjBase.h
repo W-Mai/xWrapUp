@@ -14,6 +14,8 @@ FUNC_ENUM({
     FUNC_ENUM_ITEM(show);
     FUNC_ENUM_ITEM(hide);
     FUNC_ENUM_ITEM(visible);
+
+    IDGEN_END();
 })
 
 ATTR_ENUM({
@@ -21,6 +23,8 @@ ATTR_ENUM({
 
     ATTR_ENUM_ITEM(Width);
     ATTR_ENUM_ITEM(Height);
+
+    IDGEN_END();
 })
 
 #undef CURRENT_CLASS_NAME// remember to clear macros
