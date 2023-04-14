@@ -65,13 +65,13 @@ void wrapper_init() { lvObj::init(); }
 void app_create() {
     IObjBase *objBase;
 
-    lvObj screen(nullptr);
-    screen.native(lv_scr_act());
+    auto screen = new lvObj(nullptr);
+    screen->native(lv_scr_act());
 
-    lvObj obj(&screen);
-    lvObj obj2(&obj);
+    auto obj  = new lvObj(screen);
+    auto obj2 = new lvObj(screen);
 
-    objBase = &obj;
+    objBase   = obj;
     cout << objBase->type() << endl;
     cout << objBase->parent() << endl;
 
@@ -80,10 +80,11 @@ void app_create() {
     setAttr(objBase, AE(IObjBase) X, 300);
     setAttr(objBase, AE(IObjBase) Y, 100);
 
-    setAttr(&obj2, AE(IObjBase) Width, 100);
-    setAttr(&obj2, AE(IObjBase) Height, 100);
-    setAttr(&obj2, AE(IObjBase) X, 30);
-    setAttr(&obj2, AE(IObjBase) X, 10);
+    obj2->parent(objBase);
+    setAttr(obj2, AE(IObjBase) Width, 100);
+    setAttr(obj2, AE(IObjBase) Height, 100);
+    setAttr(obj2, AE(IObjBase) X, 30);
+    setAttr(obj2, AE(IObjBase) X, 10);
 
     auto res = getAttr<coordType>(objBase, AE(IObjBase) Width);
     cout << res << endl;

@@ -15,11 +15,13 @@ public:
     }
 
 protected:
+    void *nativeGetParent() override;
     coordType nativeGetWidth() override;
     coordType nativeGetHeight() override;
     coordType nativeGetX() override;
     coordType nativeGetY() override;
 
+    void nativeSetParent(void *par) override;
     void nativeSetWidth(coordType w) override;
     void nativeSetHeight(coordType h) override;
     void nativeSetX(coordType x) override;

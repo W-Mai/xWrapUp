@@ -42,7 +42,10 @@ using coordType = int32_t;
         CLASS_OBJ_INIT(__VA_ARGS__)                                            \
         virtual const char *type() { return __type; }                          \
         IObjBase *parent(IObjBase *parent = nullptr) {                         \
-            if (parent) __parent = parent;                                     \
+            if (parent) {                                                      \
+                __parent = parent;                                             \
+                nativeSetParent(__parent->native());                           \
+            }                                                                  \
             return __parent;                                                   \
         };                                                                     \
         void *native(void *nat = nullptr) {                                    \

@@ -9,6 +9,9 @@
 // ********************************************************************
 
 // ***************************** Getters ******************************
+void *lvObj::nativeGetParent() {
+    return lv_obj_get_parent((lv_obj_t *) native());
+}
 coordType lvObj::nativeGetWidth() {
     return lv_obj_get_style_width((lv_obj_t *) native(), LV_PART_MAIN);
 }
@@ -23,6 +26,9 @@ coordType lvObj::nativeGetY() {
 }
 
 // ***************************** Setters ******************************
+void lvObj::nativeSetParent(void *par) {
+    lv_obj_set_parent((lv_obj_t *) native(), (lv_obj_t *) par);
+}
 void lvObj::nativeSetWidth(coordType w) {
     lv_obj_set_style_width((lv_obj_t *) native(), w, LV_PART_MAIN);
 }

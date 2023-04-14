@@ -56,11 +56,13 @@ ErrorCode setY(void *ret_val, va_list vars);
 // ********************************************************************
 protected:
 // ***************************** Getters ******************************
+virtual void *nativeGetParent();
 virtual coordType nativeGetWidth();
 virtual coordType nativeGetHeight();
 virtual coordType nativeGetX();
 virtual coordType nativeGetY();
 // ***************************** Setters ******************************
+virtual void nativeSetParent(void *par);
 virtual void nativeSetWidth(coordType w);
 virtual void nativeSetHeight(coordType h);
 virtual void nativeSetX(coordType x);
