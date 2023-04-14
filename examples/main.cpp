@@ -53,8 +53,11 @@ using namespace std;
 void wrapper_init() { lvObj::init(); }
 
 void app_create() {
+    lvObj screen(nullptr);
+    screen.native(lv_scr_act());
+
     IObjBase *objBase;
-    lvObj obj(nullptr);
+    lvObj obj(&screen);
 
     objBase = &obj;
     cout << objBase->type() << endl;

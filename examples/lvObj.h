@@ -11,7 +11,7 @@
 class lvObj : public IObjBase {
 public:
     explicit lvObj(IObjBase *par) : IObjBase(par) {
-        native(lv_obj_create(par ? (lv_obj_t *) par->native() : lv_scr_act()));
+        native(lv_obj_create(par ? (lv_obj_t *) par->native() : nullptr));
     }
 
     coordType nativeGetWidth() override;

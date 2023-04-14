@@ -44,18 +44,14 @@ ErrorCode getHeight(int *ret_val, va_list vars);
 ErrorCode setWidth(void *ret_val, va_list vars);
 ErrorCode setHeight(void *ret_val, va_list vars);
 
-/**
- * Native Operations
- */
+// ********************************************************************
+// *                        Native Operations                         *
+// ********************************************************************
 protected:
-/**
- * Native Getters
- */
+// ***************************** Getters ******************************
 virtual coordType nativeGetWidth();
 virtual coordType nativeGetHeight();
-/**
- * Native Setters
- */
+// ***************************** Setters ******************************
 virtual void nativeSetWidth(coordType w);
 virtual void nativeSetHeight(coordType h);
 
