@@ -17,6 +17,16 @@ T exec(IObjBase *obj, IDType id, ARGS... args) {
     obj->exec(id, &rtn, args...);
     return rtn;
 }
+template<class... ARGS>
+ErrorCode setAttr(IObjBase *obj, IDType id, ARGS... args) {
+    return obj->setAttr(id, nullptr, args...);
+}
+template<class T, class... ARGS>
+T getAttr(IObjBase *obj, IDType id, ARGS... args) {
+    T rtn{};
+    obj->getAttr(id, &rtn, args...);
+    return rtn;
+}
 
 void wrapper_init();
 void app_create();
@@ -53,25 +63,28 @@ using namespace std;
 void wrapper_init() { lvObj::init(); }
 
 void app_create() {
+    IObjBase *objBase;
+
     lvObj screen(nullptr);
     screen.native(lv_scr_act());
 
-    IObjBase *objBase;
     lvObj obj(&screen);
+    lvObj obj2(&obj);
 
     objBase = &obj;
     cout << objBase->type() << endl;
-    uint32_t res;
-    objBase->setAttr(AE(IObjBase) Width, nullptr, 200);
-    objBase->setAttr(AE(IObjBase) Height, nullptr, 300);
-    objBase->getAttr(AE(IObjBase) Width, &res);
-    cout << res << endl;
     cout << objBase->parent() << endl;
 
-    objBase->setAttr(AE(IObjBase) X, nullptr, 300);
-    objBase->setAttr(AE(IObjBase) Y, nullptr, 100);
+    setAttr(objBase, AE(IObjBase) Width, 200);
+    setAttr(objBase, AE(IObjBase) Height, 300);
+    setAttr(objBase, AE(IObjBase) X, 300);
+    setAttr(objBase, AE(IObjBase) Y, 100);
 
-    lvObj obj2(&obj);
-    obj2.setAttr(AE(IObjBase) X, nullptr, 30);
-    obj2.setAttr(AE(IObjBase) Y, nullptr, 10);
+    setAttr(&obj2, AE(IObjBase) Width, 100);
+    setAttr(&obj2, AE(IObjBase) Height, 100);
+    setAttr(&obj2, AE(IObjBase) X, 30);
+    setAttr(&obj2, AE(IObjBase) X, 10);
+
+    auto res = getAttr<coordType>(objBase, AE(IObjBase) Width);
+    cout << res << endl;
 }
