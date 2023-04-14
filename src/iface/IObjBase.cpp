@@ -65,18 +65,38 @@ ErrorCode IObjBase::visible(int *ret_val, va_list vars) const {
 }
 
 ErrorCode IObjBase::getWidth(int *ret_val, va_list vars) {
+    width    = nativeGetWidth();
     *ret_val = width;
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::setWidth(void *ret_val, va_list vars) {
     width = va_arg(vars, int);
+    nativeSetWidth(width);
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::getHeight(int *ret_val, va_list vars) {
+    height   = nativeGetHeight();
     *ret_val = height;
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::setHeight(void *ret_val, va_list vars) {
     height = va_arg(vars, int);
+    nativeSetHeight(height);
     return ErrorCode::OK;
 }
+
+/**
+ * Native Operations
+ */
+
+/**
+ * Native Getters
+ */
+coordType IObjBase::nativeGetWidth() { return 0; }
+coordType IObjBase::nativeGetHeight() { return 0; }
+
+/**
+ * Native Setters
+ */
+void IObjBase::nativeSetWidth(coordType w) {}
+void IObjBase::nativeSetHeight(coordType h) {}

@@ -40,9 +40,24 @@ ErrorCode hide(int * /*ret_val*/, va_list /*vars*/);
 ErrorCode visible(int *ret_val, va_list vars) const;
 
 ErrorCode getWidth(int *ret_val, va_list vars);
-ErrorCode setWidth(void *ret_val, va_list vars);
 ErrorCode getHeight(int *ret_val, va_list vars);
+ErrorCode setWidth(void *ret_val, va_list vars);
 ErrorCode setHeight(void *ret_val, va_list vars);
+
+/**
+ * Native Operations
+ */
+protected:
+/**
+ * Native Getters
+ */
+virtual coordType nativeGetWidth();
+virtual coordType nativeGetHeight();
+/**
+ * Native Setters
+ */
+virtual void nativeSetWidth(coordType w);
+virtual void nativeSetHeight(coordType h);
 
 private:
 bool visibility{};

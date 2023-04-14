@@ -14,10 +14,11 @@ public:
         native(lv_obj_create(par ? (lv_obj_t *) par->native() : lv_scr_act()));
     }
 
-    ErrorCode getWidth(int *ret_val, va_list vars);
-    ErrorCode setWidth(void *ret_val, va_list vars);
-    ErrorCode getHeight(int *ret_val, va_list vars);
-    ErrorCode setHeight(void *ret_val, va_list vars);
+    coordType nativeGetWidth() override;
+    coordType nativeGetHeight() override;
+
+    void nativeSetWidth(coordType w) override;
+    void nativeSetHeight(coordType h) override;
 };
 
 

@@ -37,7 +37,7 @@ int main() {
         LV_LOG_USER("hal init failed");
         return -1;
     }
-    
+
     app_create();
 
     while (true) {
@@ -59,10 +59,13 @@ void app_create() {
     objBase = &obj;
     cout << objBase->type() << endl;
     uint32_t res;
-    objBase->setAttr(AE(IObjBase) Width, nullptr, 20);
+    objBase->setAttr(AE(IObjBase) Width, nullptr, 200);
+    objBase->setAttr(AE(IObjBase) Height, nullptr, 300);
     objBase->getAttr(AE(IObjBase) Width, &res);
 
     cout << res << endl;
 
     cout << objBase->parent() << endl;
+
+    lvObj obj2(&obj);
 }

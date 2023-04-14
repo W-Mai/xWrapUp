@@ -3,20 +3,16 @@
 //
 
 #include "lvObj.h"
-ErrorCode lvObj::getWidth(int *ret_val, va_list vars) {
-    auto width = lv_obj_get_style_width((lv_obj_t *) native(), LV_PART_MAIN);
-    *ret_val   = width;
-    return ErrorCode::OK;
+
+coordType lvObj::nativeGetWidth() {
+    return lv_obj_get_style_width((lv_obj_t *) native(), LV_PART_MAIN);
 }
-ErrorCode lvObj::setWidth(void *ret_val, va_list vars) {
-    auto res   = IObjBase::setWidth(ret_val, vars);
-    auto width = va_arg(vars, int);
-    lv_obj_set_style_width((lv_obj_t *) native(), width, LV_PART_MAIN);
-    return res;
+coordType lvObj::nativeGetHeight() {
+    return lv_obj_get_style_height((lv_obj_t *) native(), LV_PART_MAIN);
 }
-ErrorCode lvObj::getHeight(int *ret_val, va_list vars) {
-    return IObjBase::getHeight(ret_val, vars);
+void lvObj::nativeSetWidth(coordType w) {
+    lv_obj_set_style_width((lv_obj_t *) native(), w, LV_PART_MAIN);
 }
-ErrorCode lvObj::setHeight(void *ret_val, va_list vars) {
-    return IObjBase::setHeight(ret_val, vars);
+void lvObj::nativeSetHeight(coordType h) {
+    lv_obj_set_style_height((lv_obj_t *) native(), h, LV_PART_MAIN);
 }
