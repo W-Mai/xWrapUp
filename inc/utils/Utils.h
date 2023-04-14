@@ -40,7 +40,14 @@ using IDType = IDGenerator::IDType;
         DECL_ATTR_MAP(CLASS_NAME);                                             \
         CLASS_OBJ_INIT(__VA_ARGS__)                                            \
         virtual const char *type() { return __type; }                          \
-        virtual void *native() { return __native; }                            \
+        IObjBase *parent(IObjBase *parent = nullptr) {                         \
+            if (parent) __parent = parent;                                     \
+            return __parent;                                                   \
+        };                                                                     \
+        void *native(void *nat = nullptr) {                                    \
+            if (nat) __native = nat;                                           \
+            return __native;                                                   \
+        }                                                                      \
         CLASS_NAME() = delete;                                                 \
                                                                                \
     private:                                                                   \

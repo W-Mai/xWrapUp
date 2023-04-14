@@ -3,8 +3,13 @@
 //
 
 #include "lvObj.h"
+#include "lv_port/lv_port.h"
+#include "lvgl/lvgl.h"
 #include <iostream>
+#include <src/misc/lv_gc.h>
 #include <xWrapUp.h>
+
+LV_ROOTS
 
 template<class T, class... ARGS>
 T exec(IObjBase *obj, IDType id, ARGS... args) {
@@ -13,12 +18,43 @@ T exec(IObjBase *obj, IDType id, ARGS... args) {
     return rtn;
 }
 
-using namespace std;
+void wrapper_init();
+void app_create();
 
 int main() {
-    lvObj::init();
+    wrapper_init();
+
+#if LV_USE_LOG
+    lv_log_register_print_cb([](lv_log_level_t level, const char *str) {
+        printf("%s", str);
+    });
+#endif
+
+    lv_init();
+
+
+    if (lv_port_init() < 0) {
+        LV_LOG_USER("hal init failed");
+        return -1;
+    }
+    
+    app_create();
+
+    while (true) {
+        uint32_t idle = lv_timer_handler();
+        lv_port_sleep(idle ? idle : 1);
+    }
+
+    return 0;
+}
+
+
+using namespace std;
+void wrapper_init() { lvObj::init(); }
+
+void app_create() {
     IObjBase *objBase;
-    lvObj obj(objBase);
+    lvObj obj(nullptr);
 
     objBase = &obj;
     cout << objBase->type() << endl;
@@ -29,6 +65,4 @@ int main() {
     cout << res << endl;
 
     cout << objBase->parent() << endl;
-
-    return 0;
 }
