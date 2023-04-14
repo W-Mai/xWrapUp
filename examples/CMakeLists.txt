@@ -4,5 +4,10 @@ project(example)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(example main.cpp)
+file(GLOB
+        SOURCES
+        *.cpp
+        )
+
+add_executable(example ${SOURCES} main.cpp)
 target_link_libraries(example xWrapUp)

@@ -2,6 +2,7 @@
 // Created by W-Mai on 2023/2/22.
 //
 
+#include "lvObj.h"
 #include <iostream>
 #include <xWrapUp.h>
 
@@ -12,28 +13,20 @@ T exec(IObjBase *obj, IDType id, ARGS... args) {
     return rtn;
 }
 
+using namespace std;
+
 int main() {
-    IObjBase::init();
-    IButton::init();
+    lvObj::init();
+    IObjBase * objBase;
+    lvObj obj;
 
-    IObjBase *objBase;
-    auto button  = new IButton();
-    objBase      = button;
+    objBase = &obj;
+    cout << objBase->type() << endl;
+    uint32_t res;
+    objBase->setAttr(AE(IObjBase) Width, nullptr, 20);
+    objBase->getAttr(AE(IObjBase) Width, &res);
 
-    bool visible = false;
-    objBase->exec(FE(IObjBase) show, nullptr);
-    visible = exec<bool>(objBase, FE(IObjBase) visible);
-    std::cout << "visible: " << visible << std::endl;
-    exec<void *>(objBase, FE(IObjBase) hide);
-    visible = exec<bool>(objBase, FE(IObjBase) visible);
-    std::cout << "visible: " << visible << std::endl;
+    cout << res << endl;
 
-    objBase->setAttr(AE(IButton) Test, nullptr, 20);
-    int val;
-    std::cout << (objBase->getAttr(AE(IButton) Test, &val) == ErrorCode::Done)
-              << std::endl;
-    std::cout << val << std::endl;
-
-    std::cout << objBase->type() << std::endl;
     return 0;
 }
