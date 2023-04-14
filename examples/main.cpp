@@ -2,31 +2,14 @@
 // Created by W-Mai on 2023/2/22.
 //
 
-#include "lvObj.h"
-#include "lv_port/lv_port.h"
-#include "lvgl/lvgl.h"
 #include <iostream>
+#include <lvObj.h>
+#include <lv_port/lv_port.h>
+#include <lvgl.h>
 #include <src/misc/lv_gc.h>
 #include <xWrapUp.h>
 
 LV_ROOTS
-
-template<class T, class... ARGS>
-T exec(IObjBase *obj, IDType id, ARGS... args) {
-    T rtn{};
-    obj->exec(id, &rtn, args...);
-    return rtn;
-}
-template<class... ARGS>
-ErrorCode setAttr(IObjBase *obj, IDType id, ARGS... args) {
-    return obj->setAttr(id, nullptr, args...);
-}
-template<class T, class... ARGS>
-T getAttr(IObjBase *obj, IDType id, ARGS... args) {
-    T rtn{};
-    obj->getAttr(id, &rtn, args...);
-    return rtn;
-}
 
 void wrapper_init();
 void app_create();

@@ -2,7 +2,7 @@
 // Created by W-Mai on 2023/2/28.
 //
 
-#include "IDGenerator.h"
+#include <IDGenerator.h>
 
 IDGenerator::IDGenerator(IDType stp) {
     IDGenerator::step = stp;

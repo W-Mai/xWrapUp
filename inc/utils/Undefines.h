@@ -32,6 +32,7 @@
 #undef ATTR_ENUM_ITEM
 
 #undef IDGEN_START
+#undef IDGEN_END
 
 #undef FETCH_ATTR_FUNC
 

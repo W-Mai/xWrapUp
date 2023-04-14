@@ -5,7 +5,7 @@
 #ifndef XWRAPUP_LVOBJ_H
 #define XWRAPUP_LVOBJ_H
 
-#include "lvgl.h"
+#include <lvgl.h>
 #include <xWrapUp.h>
 
 class lvObj : public IObjBase {

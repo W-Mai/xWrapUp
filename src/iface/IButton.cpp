@@ -2,7 +2,7 @@
 // Created by W-Mai on 2023/3/07.
 //
 
-#include "iface/IButton.h"
+#include <iface/IButton.h>
 
 #define CURRENT_CLASS_NAME IButton
 

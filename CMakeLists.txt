@@ -13,6 +13,7 @@ include_directories(inc)
 file(GLOB
         SOURCES
         src/*.cpp
+        src/c/*.cpp
         src/iface/*.cpp
         )
 

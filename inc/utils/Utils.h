@@ -4,7 +4,7 @@
 
 #ifndef XWRAPUP_UTILS_H
 #define XWRAPUP_UTILS_H
-#include "IDGenerator.h"
+#include <IDGenerator.h>
 
 using IDType    = IDGenerator::IDType;
 using coordType = int32_t;

@@ -2,7 +2,7 @@
 // Created by W-Mai on 2023/2/22.
 //
 
-#include "iface/IObjBase.h"
+#include <iface/IObjBase.h>
 
 #define CURRENT_CLASS_NAME IObjBase
 
