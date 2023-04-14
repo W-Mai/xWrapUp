@@ -41,10 +41,13 @@ using IDType = IDGenerator::IDType;
         CLASS_OBJ_INIT(__VA_ARGS__)                                            \
         virtual const char *type() { return __type; }                          \
         virtual void *native() { return __native; }                            \
+        CLASS_NAME() = delete;                                                 \
                                                                                \
     private:                                                                   \
         const char *__type = #CLASS_NAME;                                      \
-        void *__native     = nullptr;
+        void *__native     = nullptr;                                          \
+        IObjBase *__parent;
+
 
 #define CLASS_END(CLASS_NAME)                                                  \
     }                                                                          \

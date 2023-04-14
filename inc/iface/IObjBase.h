@@ -21,7 +21,13 @@ CLASS_BEGIN(IObjBase, OBJ_BASE_CONSTRUCTOR(), {
 })
 
 public:
-IObjBase() = default;
+explicit IObjBase(IObjBase *parent) : __parent(parent) {}
+
+virtual IObjBase *parent(IObjBase *parent = nullptr) {
+    if (parent) __parent = parent;
+    return __parent;
+};
+
 virtual ErrorCode getAttr(IDType id, void *ret_val, ...);
 virtual ErrorCode setAttr(IDType id, void *ret_val, ...);
 virtual ErrorCode exec(IDType id, void *ret_val, ...);

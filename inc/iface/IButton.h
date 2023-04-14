@@ -13,8 +13,7 @@
 CLASS_BEGIN(IButton, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 
 public:
-IButton() = default;
-
+explicit IButton(IObjBase *parent) : IObjBase(parent) {}
 //void registerCb() {}
 
 protected:

@@ -17,8 +17,8 @@ using namespace std;
 
 int main() {
     lvObj::init();
-    IObjBase * objBase;
-    lvObj obj;
+    IObjBase *objBase;
+    lvObj obj(objBase);
 
     objBase = &obj;
     cout << objBase->type() << endl;
@@ -27,6 +27,8 @@ int main() {
     objBase->getAttr(AE(IObjBase) Width, &res);
 
     cout << res << endl;
+
+    cout << objBase->parent() << endl;
 
     return 0;
 }

@@ -8,7 +8,8 @@
 #include <xWrapUp.h>
 
 class lvObj : public IObjBase {
-
+public:
+    explicit lvObj(IObjBase *parent) : IObjBase(parent) {}
 };
 
 
