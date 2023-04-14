@@ -14,11 +14,16 @@ public:
         native(lv_obj_create(par ? (lv_obj_t *) par->native() : nullptr));
     }
 
+protected:
     coordType nativeGetWidth() override;
     coordType nativeGetHeight() override;
+    coordType nativeGetX() override;
+    coordType nativeGetY() override;
 
     void nativeSetWidth(coordType w) override;
     void nativeSetHeight(coordType h) override;
+    void nativeSetX(coordType x) override;
+    void nativeSetY(coordType y) override;
 };
 
 

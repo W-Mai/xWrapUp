@@ -65,10 +65,13 @@ void app_create() {
     objBase->setAttr(AE(IObjBase) Width, nullptr, 200);
     objBase->setAttr(AE(IObjBase) Height, nullptr, 300);
     objBase->getAttr(AE(IObjBase) Width, &res);
-
     cout << res << endl;
-
     cout << objBase->parent() << endl;
 
+    objBase->setAttr(AE(IObjBase) X, nullptr, 300);
+    objBase->setAttr(AE(IObjBase) Y, nullptr, 100);
+
     lvObj obj2(&obj);
+    obj2.setAttr(AE(IObjBase) X, nullptr, 30);
+    obj2.setAttr(AE(IObjBase) Y, nullptr, 10);
 }

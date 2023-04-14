@@ -23,6 +23,8 @@ ATTR_ENUM({
 
     ATTR_ENUM_ITEM(Width);
     ATTR_ENUM_ITEM(Height);
+    ATTR_ENUM_ITEM(X);
+    ATTR_ENUM_ITEM(Y);
 
     IDGEN_END();
 })

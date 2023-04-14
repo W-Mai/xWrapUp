@@ -84,19 +84,39 @@ ErrorCode IObjBase::setHeight(void *ret_val, va_list vars) {
     nativeSetHeight(height);
     return ErrorCode::OK;
 }
+ErrorCode IObjBase::getX(int *ret_val, va_list vars) {
+    *ret_val = nativeGetX();
+    x        = *ret_val;
+    return ErrorCode::OK;
+}
+ErrorCode IObjBase::setX(void *ret_val, va_list vars) {
+    x = va_arg(vars, int);
+    nativeSetX(x);
+    return ErrorCode::OK;
+}
+ErrorCode IObjBase::getY(int *ret_val, va_list vars) {
+    *ret_val = nativeGetY();
+    y        = *ret_val;
+    return ErrorCode::OK;
+}
+ErrorCode IObjBase::setY(void *ret_val, va_list vars) {
+    y = va_arg(vars, int);
+    nativeSetY(y);
+    return ErrorCode::OK;
+}
 
-/**
- * Native Operations
- */
 
-/**
- * Native Getters
- */
+// ********************************************************************
+// *                        Native Operations                         *
+// ********************************************************************
+
+// ***************************** Getters ******************************
 coordType IObjBase::nativeGetWidth() { return 0; }
 coordType IObjBase::nativeGetHeight() { return 0; }
-
-/**
- * Native Setters
- */
-void IObjBase::nativeSetWidth(coordType w) {}
-void IObjBase::nativeSetHeight(coordType h) {}
+coordType IObjBase::nativeGetX() { return 0; }
+coordType IObjBase::nativeGetY() { return 0; }
+// ***************************** Setters ******************************
+void IObjBase::nativeSetWidth(coordType /*w*/) {}
+void IObjBase::nativeSetHeight(coordType /*h*/) {}
+void IObjBase::nativeSetX(coordType /*x*/) {}
+void IObjBase::nativeSetY(coordType /*y*/) {}
