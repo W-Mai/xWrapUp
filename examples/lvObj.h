@@ -13,6 +13,9 @@ public:
     explicit lvObj(IObjBase *par) : IObjBase(par) {
         native(lv_obj_create(par ? (lv_obj_t *) par->native() : nullptr));
     }
+    static IObjBase *constructor(IObjBase *par = nullptr) {
+        return new lvObj(par);
+    }
 
 protected:
     void *nativeGetParent() override;

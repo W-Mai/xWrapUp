@@ -55,6 +55,9 @@ using coordType = int32_t;
             return __native;                                                   \
         }                                                                      \
         CLASS_NAME() = delete;                                                 \
+        static IObjBase *constructor(IObjBase *par = nullptr) {                \
+            return new CLASS_NAME(par);                                        \
+        }                                                                      \
                                                                                \
     private:                                                                   \
         const char *__type = #CLASS_NAME;                                      \

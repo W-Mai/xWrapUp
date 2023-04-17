@@ -47,12 +47,11 @@ void wrapper_init() { lvObj::init(); }
 
 void app_create() {
     IObjBase *objBase;
-
-    auto screen = new lvObj(nullptr);
+    auto screen = lvObj::constructor(nullptr);
     screen->native(lv_scr_act());
 
-    auto obj  = new lvObj(screen);
-    auto obj2 = new lvObj(screen);
+    auto obj  = lvObj::constructor(screen);
+    auto obj2 = lvObj::constructor(screen);
 
     objBase   = obj;
     cout << objBase->type() << endl;
