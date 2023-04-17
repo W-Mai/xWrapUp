@@ -58,23 +58,23 @@ ErrorCode setY(void *ret_val, va_list vars);
 protected:
 // ***************************** Getters ******************************
 virtual void *nativeGetParent();
-virtual coordType nativeGetWidth();
-virtual coordType nativeGetHeight();
-virtual coordType nativeGetX();
-virtual coordType nativeGetY();
+virtual CoordType nativeGetWidth();
+virtual CoordType nativeGetHeight();
+virtual CoordType nativeGetX();
+virtual CoordType nativeGetY();
 // ***************************** Setters ******************************
 virtual void nativeSetParent(void *par);
-virtual void nativeSetWidth(coordType w);
-virtual void nativeSetHeight(coordType h);
-virtual void nativeSetX(coordType x);
-virtual void nativeSetY(coordType y);
+virtual void nativeSetWidth(CoordType w);
+virtual void nativeSetHeight(CoordType h);
+virtual void nativeSetX(CoordType x);
+virtual void nativeSetY(CoordType y);
 
 private:
 bool visibility{};
-coordType width{};
-coordType height{};
-coordType x{};
-coordType y{};
+CoordType width{};
+CoordType height{};
+CoordType x{};
+CoordType y{};
 
 CLASS_END(IObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros

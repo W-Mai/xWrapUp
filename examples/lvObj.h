@@ -19,16 +19,16 @@ public:
 
 protected:
     void *nativeGetParent() override;
-    coordType nativeGetWidth() override;
-    coordType nativeGetHeight() override;
-    coordType nativeGetX() override;
-    coordType nativeGetY() override;
+    CoordType nativeGetWidth() override;
+    CoordType nativeGetHeight() override;
+    CoordType nativeGetX() override;
+    CoordType nativeGetY() override;
 
     void nativeSetParent(void *par) override;
-    void nativeSetWidth(coordType w) override;
-    void nativeSetHeight(coordType h) override;
-    void nativeSetX(coordType x) override;
-    void nativeSetY(coordType y) override;
+    void nativeSetWidth(CoordType w) override;
+    void nativeSetHeight(CoordType h) override;
+    void nativeSetX(CoordType x) override;
+    void nativeSetY(CoordType y) override;
 };
 
 

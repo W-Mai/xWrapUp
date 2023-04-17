@@ -8,6 +8,8 @@
 
 using IDType     = IDGenerator::IDType;
 using id_type_t  = IDType;
+using CoordType  = int32_t;
+using coord_type = CoordType;
 
 #define MAP_TYPE std::map
 

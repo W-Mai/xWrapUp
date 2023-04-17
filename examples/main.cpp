@@ -81,6 +81,6 @@ void app_create() {
     setAttr(obj2, AE(IObjBase) X, 30);
     setAttr(obj2, AE(IObjBase) X, 10);
 
-    auto res = getAttr<coordType>(objBase, AE(IObjBase) Width);
+    auto res = getAttr<CoordType>(objBase, AE(IObjBase) Width);
     cout << res << endl;
 }

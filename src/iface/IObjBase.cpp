@@ -112,13 +112,13 @@ ErrorCode IObjBase::setY(void *ret_val, va_list vars) {
 
 // ***************************** Getters ******************************
 void *IObjBase::nativeGetParent() { return nullptr; }
-coordType IObjBase::nativeGetWidth() { return 0; }
-coordType IObjBase::nativeGetHeight() { return 0; }
-coordType IObjBase::nativeGetX() { return 0; }
-coordType IObjBase::nativeGetY() { return 0; }
+CoordType IObjBase::nativeGetWidth() { return 0; }
+CoordType IObjBase::nativeGetHeight() { return 0; }
+CoordType IObjBase::nativeGetX() { return 0; }
+CoordType IObjBase::nativeGetY() { return 0; }
 // ***************************** Setters ******************************
 void IObjBase::nativeSetParent(void * /*p*/) {}
-void IObjBase::nativeSetWidth(coordType /*w*/) {}
-void IObjBase::nativeSetHeight(coordType /*h*/) {}
-void IObjBase::nativeSetX(coordType /*x*/) {}
-void IObjBase::nativeSetY(coordType /*y*/) {}
+void IObjBase::nativeSetWidth(CoordType /*w*/) {}
+void IObjBase::nativeSetHeight(CoordType /*h*/) {}
+void IObjBase::nativeSetX(CoordType /*x*/) {}
+void IObjBase::nativeSetY(CoordType /*y*/) {}
