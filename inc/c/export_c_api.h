@@ -8,9 +8,13 @@
 #include <utils/Utils.h>
 
 void wu_obj_register(
-    wrapper_context_t *ctx, id_type_t type, obj_constructor_func cons
+    wrapper_context_t *ctx,
+    id_type_t type,
+    obj_constructor_func cons,
+    obj_destructor_func dest
 );
 void *wu_obj_create(const wrapper_context_t *ctx, id_type_t type, void *parent);
+void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj);
 
 
 #endif//XWRAPUP_EXPORT_C_API_H

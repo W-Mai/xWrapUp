@@ -5,7 +5,10 @@
 #include <xWrapUp.h>
 
 void wu_obj_register(
-    wrapper_context_t *ctx, id_type_t type, obj_constructor_func cons
+    wrapper_context_t *ctx,
+    id_type_t type,
+    obj_constructor_func cons,
+    obj_destructor_func dest
 ) {
     auto res = (wrapper_context_t::KPS *)
         realloc(ctx->kps, (ctx->cnt + 1) * sizeof(wrapper_context_t::KPS));
@@ -13,6 +16,7 @@ void wu_obj_register(
     ctx->kps                       = res;
 
     ctx->kps[ctx->cnt].constructor = cons;
+    ctx->kps[ctx->cnt].destructor  = dest;
     ctx->kps[ctx->cnt].type        = type;
 
     ctx->cnt++;
@@ -47,4 +51,26 @@ wu_obj_create(const wrapper_context_t *ctx, id_type_t type, void *parent) {
     auto constructor = it->constructor;
 
     return constructor(parent);
+}
+
+void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
+    auto o = (IObjBase *) obj;
+
+    assert(ctx);
+    assert(ctx->kps);
+
+    const auto it = std::lower_bound(
+        ctx->kps,
+        ctx->kps + ctx->cnt,
+        type,
+        [](const wrapper_context_t ::KPS &kps, const IDType &type) {
+            return kps.type < type;
+        }
+    );
+
+    assert(it != ctx->kps + ctx->cnt && it->type == type);
+
+    auto destructor = it->destructor;
+
+    return destructor(obj);
 }

@@ -16,6 +16,11 @@ public:
     static IObjBase *constructor(IObjBase *par = nullptr) {
         return new lvObj(par);
     }
+    static void destructor(IObjBase *obj) {
+        auto native = (lv_obj_t *) obj->native();
+        if (native) lv_obj_del(native);
+        delete obj;
+    }
 
 protected:
     void *nativeGetParent() override;

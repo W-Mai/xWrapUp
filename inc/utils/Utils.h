@@ -60,6 +60,7 @@ using coord_type = CoordType;
         static IObjBase *constructor(IObjBase *par = nullptr) {                \
             return new CLASS_NAME(par);                                        \
         }                                                                      \
+        static void destructor(IObjBase *obj) { delete obj; }                  \
                                                                                \
     private:                                                                   \
         const char *__type = #CLASS_NAME;                                      \
@@ -125,11 +126,14 @@ enum class ErrorCode {
 };
 
 using ObjConstructorFunc   = void *(*) (void *par);
+using ObjDestructorFunc    = void *(*) (void *obj);
 using obj_constructor_func = ObjConstructorFunc;
+using obj_destructor_func  = ObjDestructorFunc;
 typedef struct WrapperContext {
     struct KPS {
         IDType type;
         ObjConstructorFunc constructor;
+        ObjDestructorFunc destructor;
     } *kps;
 
     CoordType cnt;

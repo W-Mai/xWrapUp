@@ -54,7 +54,12 @@ void wrapper_init() {
         .cnt = 0,
     };
     // register constructors
-    wu_obj_register(&ctx, lvObj::ID, (obj_constructor_func) lvObj::constructor);
+    wu_obj_register(
+        &ctx,
+        lvObj::ID,
+        (obj_constructor_func) lvObj::constructor,
+        (obj_destructor_func) lvObj::destructor
+    );
     context = &ctx;
 }
 
@@ -85,4 +90,10 @@ void app_create() {
 
     auto res = getAttr<CoordType>(objBase, AE(IObjBase) Width);
     cout << res << endl;
+
+    // use c api to destroy obj
+    wu_obj_destroy(context, lvObj::ID, obj2);
+
+    // use destructor to destroy obj
+    lvObj::destructor(obj);
 }
