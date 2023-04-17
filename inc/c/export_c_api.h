@@ -7,6 +7,9 @@
 
 #include <utils/Utils.h>
 
+#ifdef __cplusplus
+extern "C" {
+
 void wu_obj_register(
     wrapper_context_t *ctx,
     id_type_t type,
@@ -15,6 +18,7 @@ void wu_obj_register(
 );
 void *wu_obj_create(const wrapper_context_t *ctx, id_type_t type, void *parent);
 void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj);
-
+}
+#endif
 
 #endif//XWRAPUP_EXPORT_C_API_H
