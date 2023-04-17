@@ -87,13 +87,21 @@ void app_create() {
     setAttr(obj2, AE(IObjBase) Height, 100);
     setAttr(obj2, AE(IObjBase) X, 30);
     setAttr(obj2, AE(IObjBase) X, 10);
+    // use c api to set attr
+    wu_obj_set_attr_c(obj2, AE(IObjBase) X, nullptr, 100);
 
     auto res = getAttr<CoordType>(objBase, AE(IObjBase) Width);
     cout << res << endl;
 
     // use c api to destroy obj
-    wu_obj_destroy(context, lvObj::ID, obj2);
+    //    wu_obj_destroy(context, lvObj::ID, obj2);
 
     // use destructor to destroy obj
-    lvObj::destructor(obj);
+    //    lvObj::destructor(obj);
+
+    // use c api to get attr for screen
+
+    int width;
+    wu_obj_get_attr(screen, AE(IObjBase) Width, &width);
+    cout << width << endl;
 }

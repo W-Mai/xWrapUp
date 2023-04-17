@@ -74,3 +74,21 @@ void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
 
     return destructor(obj);
 }
+
+ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res) {
+    auto o = (IObjBase *) obj;
+
+    assert(obj);
+    assert(res);
+
+    return o->getAttr(type, res);
+}
+
+ErrorCode
+wu_obj_set_attr_c(void *obj, id_type_t type, void *res, coord_type val) {
+    auto o = (IObjBase *) obj;
+
+    assert(obj);
+
+    return o->setAttr(type, res, val);
+}
