@@ -32,7 +32,9 @@ using coordType = int32_t;
 #define CLASS_BEGIN(CLASS_NAME, HEADER_CONSTRUCTOR, ...)                       \
     class CLASS_NAME HEADER_CONSTRUCTOR {                                      \
     public:                                                                    \
-        using CLASS_FUNC_TYPE = ErrorCode (CLASS_NAME::*)(void *, va_list);    \
+        using CLASS_FUNC_TYPE  = ErrorCode (CLASS_NAME::*)(void *, va_list);   \
+        const static IDType ID = CURRENT_CLASS_ID;                             \
+                                                                               \
         struct ATTR_FUNC_PACK {                                                \
             CLASS_FUNC_TYPE get;                                               \
             CLASS_FUNC_TYPE set;                                               \

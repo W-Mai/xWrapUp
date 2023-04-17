@@ -4,6 +4,7 @@
 
 #ifndef XWRAPUP_IDGENERATOR_H
 #define XWRAPUP_IDGENERATOR_H
+
 #include <cinttypes>
 
 class IDGenerator {

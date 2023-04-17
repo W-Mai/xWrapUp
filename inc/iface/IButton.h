@@ -9,6 +9,7 @@
 #include "enums/EButton.h"
 
 #define CURRENT_CLASS_NAME IButton
+#define CURRENT_CLASS_ID 10
 
 CLASS_BEGIN(IButton, OBJ_CONSTRUCTOR(), { CLASS_OBJ_INIT_ITEM_ATTR(Test); })
 
@@ -31,5 +32,5 @@ int width{};
 
 CLASS_END(IButton)
 #undef CURRENT_CLASS_NAME// remember to clear macros
-
+#undef CURRENT_CLASS_ID
 #endif//XWRAPUP_IBUTTON_H

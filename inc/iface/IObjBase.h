@@ -10,6 +10,7 @@
 #include "enums/EObjBase.h"
 
 #define CURRENT_CLASS_NAME IObjBase
+#define CURRENT_CLASS_ID 1
 
 CLASS_BEGIN(IObjBase, OBJ_BASE_CONSTRUCTOR(), {
     CLASS_OBJ_INIT_ITEM(show);
@@ -77,4 +78,5 @@ coordType y{};
 
 CLASS_END(IObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros
-#endif                   // XWRAPUP_IOBJBASE_H
+#undef CURRENT_CLASS_ID
+#endif// XWRAPUP_IOBJBASE_H
