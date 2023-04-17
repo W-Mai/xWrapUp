@@ -60,9 +60,11 @@ void wrapper_init() {
 
 void app_create() {
     IObjBase *objBase;
+    // use c api to create obj
     auto screen = (lvObj *) wu_obj_create(context, lvObj::ID, nullptr);
     screen->native(lv_scr_act());
 
+    // use constructor to create obj
     auto obj  = lvObj::constructor(screen);
     auto obj2 = lvObj::constructor(screen);
 
