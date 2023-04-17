@@ -43,11 +43,24 @@ int main() {
 
 
 using namespace std;
-void wrapper_init() { lvObj::init(); }
+
+const static WrapperContext *context;
+
+void wrapper_init() {
+    lvObj::init();
+
+    static wrapper_context_t ctx = {
+        .kps = nullptr,
+        .cnt = 0,
+    };
+    // register constructors
+    wu_obj_register(&ctx, lvObj::ID, (obj_constructor_func) lvObj::constructor);
+    context = &ctx;
+}
 
 void app_create() {
     IObjBase *objBase;
-    auto screen = lvObj::constructor(nullptr);
+    auto screen = (lvObj *) wu_obj_create(context, lvObj::ID, nullptr);
     screen->native(lv_scr_act());
 
     auto obj  = lvObj::constructor(screen);

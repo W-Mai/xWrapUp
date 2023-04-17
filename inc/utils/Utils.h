@@ -6,8 +6,8 @@
 #define XWRAPUP_UTILS_H
 #include <IDGenerator.h>
 
-using IDType    = IDGenerator::IDType;
-using coordType = int32_t;
+using IDType     = IDGenerator::IDType;
+using id_type_t  = IDType;
 
 #define MAP_TYPE std::map
 
@@ -121,4 +121,15 @@ enum class ErrorCode {
     OK    = 1,// Right
     Error = 2,// Failed
 };
+
+using ObjConstructorFunc   = void *(*) (void *par);
+using obj_constructor_func = ObjConstructorFunc;
+typedef struct WrapperContext {
+    struct KPS {
+        IDType type;
+        ObjConstructorFunc constructor;
+    } *kps;
+
+    CoordType cnt;
+} wrapper_context_t;
 #endif//XWRAPUP_UTILS_H
