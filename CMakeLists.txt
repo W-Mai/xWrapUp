@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(xWrapUp)
 
 set(CMAKE_CXX_STANDARD 11)
+set(BUILD_EXAMPLES 0)
 
 # depress suggest-override
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-inconsistent-missing-override")
@@ -20,4 +21,6 @@ file(GLOB
 add_library(xWrapUp STATIC ${SOURCES})
 target_include_directories(xWrapUp PUBLIC .)
 
-add_subdirectory(examples)
+if (BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif ()
