@@ -75,20 +75,25 @@ void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
     return destructor(obj);
 }
 
-ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res) {
+ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, ...) {
     auto o = (IObjBase *) obj;
 
     assert(obj);
     assert(res);
 
-    return o->getAttr(type, res);
+    va_list ap;
+    va_start(ap, res);
+    auto ec = o->getAttr(type, res, ap);
+    return ec;
 }
 
-ErrorCode
-wu_obj_set_attr_c(void *obj, id_type_t type, void *res, coord_type val) {
+ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, ...) {
     auto o = (IObjBase *) obj;
 
     assert(obj);
 
-    return o->setAttr(type, res, val);
+    va_list ap;
+    va_start(ap, res);
+    auto ec = o->setAttr(type, res, ap);
+    return ec;
 }

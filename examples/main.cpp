@@ -88,7 +88,7 @@ void app_create() {
     setAttr(obj2, AE(IObjBase) X, 30);
     setAttr(obj2, AE(IObjBase) X, 10);
     // use c api to set attr
-    wu_obj_set_attr_c(obj2, AE(IObjBase) X, nullptr, 100);
+    wu_obj_set_attr(obj2, AE(IObjBase) X, nullptr, 100);
 
     auto res = getAttr<CoordType>(objBase, AE(IObjBase) Width);
     cout << res << endl;
