@@ -32,7 +32,6 @@ virtual ErrorCode exec(IDType id, void *ret_val, ...);
 
 //void registerCb() {}
 
-protected:
 virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars);
 virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars);
 virtual ErrorCode exec(IDType id, void *ret_val, va_list vars);

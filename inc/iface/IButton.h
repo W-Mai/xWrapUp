@@ -17,7 +17,6 @@ public:
 explicit IButton(IObjBase *parent) : IObjBase(parent) {}
 //void registerCb() {}
 
-protected:
 ErrorCode getAttr(IDType id, void *ret_val, va_list vars) override;
 ErrorCode setAttr(IDType id, void *ret_val, va_list vars) override;
 ErrorCode exec(IDType id, void *ret_val, va_list vars) override;
