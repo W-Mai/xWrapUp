@@ -99,3 +99,24 @@ ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, ...) {
     va_end(ap);
     return ec;
 }
+
+ErrorCode
+wu_obj_get_attr_v(void *obj, id_type_t type, void *res, va_list vars) {
+    auto o = (IObjBase *) obj;
+
+    assert(obj);
+    assert(res);
+
+    auto ec = o->getAttr(type, res, vars);
+    return ec;
+}
+
+ErrorCode
+wu_obj_set_attr_v(void *obj, id_type_t type, void *res, va_list vars) {
+    auto o = (IObjBase *) obj;
+
+    assert(obj);
+
+    auto ec = o->setAttr(type, res, vars);
+    return ec;
+}

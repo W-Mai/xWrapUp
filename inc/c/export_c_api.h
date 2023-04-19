@@ -5,6 +5,7 @@
 #ifndef XWRAPUP_EXPORT_C_API_H
 #define XWRAPUP_EXPORT_C_API_H
 
+#include <cstdarg>
 #include <utils/Utils.h>
 
 #ifdef __cplusplus
@@ -22,6 +23,8 @@ void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj);
 // ****************************** attr ****************************************
 ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, ...);
 ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, ...);
+ErrorCode wu_obj_get_attr_v(void *obj, id_type_t type, void *res, va_list args);
+ErrorCode wu_obj_set_attr_v(void *obj, id_type_t type, void *res, va_list args);
 };
 
 
