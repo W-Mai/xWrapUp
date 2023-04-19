@@ -84,6 +84,7 @@ ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, ...) {
     va_list ap;
     va_start(ap, res);
     auto ec = o->getAttr(type, res, ap);
+    va_end(ap);
     return ec;
 }
 
@@ -95,5 +96,6 @@ ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, ...) {
     va_list ap;
     va_start(ap, res);
     auto ec = o->setAttr(type, res, ap);
+    va_end(ap);
     return ec;
 }
