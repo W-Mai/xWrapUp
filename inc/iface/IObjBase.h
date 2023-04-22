@@ -101,17 +101,17 @@ virtual void nativeSetX(CoordType x);
 virtual void nativeSetY(CoordType y);
 virtual void nativeSetCoords(RectType coords);
 virtual void nativeSetScrollCoords(BoxType box);
-virtual void nativeSetScrollLeft(CoordType x);
-virtual void nativeSetScrollTop(CoordType y);
-virtual void nativeSetScrollRight(CoordType x);
-virtual void nativeSetScrollBottom(CoordType y);
+virtual void nativeSetScrollLeft(CoordType left);
+virtual void nativeSetScrollTop(CoordType top);
+virtual void nativeSetScrollRight(CoordType right);
+virtual void nativeSetScrollBottom(CoordType bottom);
 
 private:
 bool visibility{};
-CoordType width{};
-CoordType height{};
-CoordType x{};
-CoordType y{};
+RectSizeType Rect{};
+RectType Coords{};
+RectType OriCoords{};
+BoxType ScrollCoords{};
 
 CLASS_END(IObjBase)
 #undef CURRENT_CLASS_NAME// remember to clear macros

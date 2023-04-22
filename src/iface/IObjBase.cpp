@@ -65,103 +65,121 @@ ErrorCode IObjBase::visible(int *ret_val, va_list vars) const {
 }
 
 ErrorCode IObjBase::getWidth(CoordType *ret_val, va_list vars) {
-    width    = nativeGetWidth();
-    *ret_val = width;
+    Rect.w   = nativeGetWidth();
+    *ret_val = Rect.w;
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::getHeight(CoordType *ret_val, va_list vars) {
-    height   = nativeGetHeight();
-    *ret_val = height;
+    Rect.h   = nativeGetHeight();
+    *ret_val = Rect.h;
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::getX(CoordType *ret_val, va_list vars) {
     *ret_val = nativeGetX();
-    x        = *ret_val;
+    Rect.x   = *ret_val;
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::getY(CoordType *ret_val, va_list vars) {
     *ret_val = nativeGetY();
-    y        = *ret_val;
+    Rect.y   = *ret_val;
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::getCoords(RectType *ret_val, va_list vars) {
     *ret_val = nativeGetCoords();
-    return ErrorCode::Done;
+    Coords   = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getOriCoords(RectType *ret_val, va_list vars) {
-    *ret_val = nativeGetOriCoords();
-    return ErrorCode::Done;
+    *ret_val  = nativeGetOriCoords();
+    OriCoords = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getRect(RectSizeType *ret_val, va_list vars) {
     *ret_val = nativeGetRect();
-    return ErrorCode::Done;
+    Rect     = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getScrollCoords(BoxType *ret_val, va_list vars) {
-    *ret_val = nativeGetScrollCoords();
-    return ErrorCode::Done;
+    *ret_val     = nativeGetScrollCoords();
+    ScrollCoords = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getScrollLeft(CoordType *ret_val, va_list vars) {
-    *ret_val = nativeGetScrollLeft();
-    return ErrorCode::Done;
+    *ret_val          = nativeGetScrollLeft();
+    ScrollCoords.left = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getScrollTop(CoordType *ret_val, va_list vars) {
-    *ret_val = nativeGetScrollTop();
-    return ErrorCode::Done;
+    *ret_val         = nativeGetScrollTop();
+    ScrollCoords.top = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getScrollRight(CoordType *ret_val, va_list vars) {
-    *ret_val = nativeGetScrollRight();
-    return ErrorCode::Done;
+    *ret_val           = nativeGetScrollRight();
+    ScrollCoords.right = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::getScrollBottom(CoordType *ret_val, va_list vars) {
-    *ret_val = nativeGetScrollBottom();
-    return ErrorCode::Done;
+    *ret_val            = nativeGetScrollBottom();
+    ScrollCoords.bottom = *ret_val;
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::setWidth(void *ret_val, va_list vars) {
-    width = va_arg(vars, int);
-    nativeSetWidth(width);
+    Rect.w = va_arg(vars, int);
+    nativeSetWidth(Rect.w);
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::setHeight(void *ret_val, va_list vars) {
-    height = va_arg(vars, int);
-    nativeSetHeight(height);
+    Rect.h = va_arg(vars, int);
+    nativeSetHeight(Rect.h);
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::setX(void *ret_val, va_list vars) {
-    x = va_arg(vars, int);
-    nativeSetX(x);
+    Rect.x = va_arg(vars, int);
+    nativeSetX(Rect.x);
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::setY(void *ret_val, va_list vars) {
-    y = va_arg(vars, int);
-    nativeSetY(y);
+    Rect.y = va_arg(vars, int);
+    nativeSetY(Rect.y);
     return ErrorCode::OK;
 }
 ErrorCode IObjBase::setCoords(void *ret_val, va_list vars) {
-    
-    return ErrorCode::Done;
+    Coords = va_arg(vars, RectType);
+    nativeSetCoords(Coords);
+    return ErrorCode::OK;
 }
-ErrorCode IObjBase::setOriCoords(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+ErrorCode IObjBase::setOriCoords(void * /*ret_val*/, va_list /*vars*/) {
+    return ErrorCode::Error;
 }
-ErrorCode IObjBase::setRect(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+ErrorCode IObjBase::setRect(void * /*ret_val*/, va_list /*vars*/) {
+    return ErrorCode::Error;
 }
 ErrorCode IObjBase::setScrollCoords(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+    ScrollCoords = va_arg(vars, BoxType);
+    nativeSetScrollCoords(ScrollCoords);
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::setScrollLeft(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+    ScrollCoords.left = va_arg(vars, CoordType);
+    nativeSetScrollLeft(ScrollCoords.left);
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::setScrollTop(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+    ScrollCoords.top = va_arg(vars, CoordType);
+    nativeSetScrollTop(ScrollCoords.top);
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::setScrollRight(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+    ScrollCoords.right = va_arg(vars, CoordType);
+    nativeSetScrollRight(ScrollCoords.right);
+    return ErrorCode::OK;
 }
 ErrorCode IObjBase::setScrollBottom(void *ret_val, va_list vars) {
-    return ErrorCode::Done;
+    ScrollCoords.bottom = va_arg(vars, CoordType);
+    nativeSetScrollBottom(ScrollCoords.bottom);
+    return ErrorCode::OK;
 }
-
 
 // ********************************************************************
 // *                        Native Operations                         *
@@ -189,7 +207,7 @@ void IObjBase::nativeSetX(CoordType /*x*/) {}
 void IObjBase::nativeSetY(CoordType /*y*/) {}
 void IObjBase::nativeSetCoords(RectType /*coords*/) {}
 void IObjBase::nativeSetScrollCoords(BoxType /*box*/) {}
-void IObjBase::nativeSetScrollLeft(CoordType /*x*/) {}
-void IObjBase::nativeSetScrollTop(CoordType /*y*/) {}
-void IObjBase::nativeSetScrollRight(CoordType /*x*/) {}
-void IObjBase::nativeSetScrollBottom(CoordType /*y*/) {}
+void IObjBase::nativeSetScrollLeft(CoordType /*left*/) {}
+void IObjBase::nativeSetScrollTop(CoordType /*top*/) {}
+void IObjBase::nativeSetScrollRight(CoordType /*right*/) {}
+void IObjBase::nativeSetScrollBottom(CoordType /*bottom*/) {}
