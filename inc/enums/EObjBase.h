@@ -25,6 +25,14 @@ ATTR_ENUM({
     ATTR_ENUM_ITEM(Height);
     ATTR_ENUM_ITEM(X);
     ATTR_ENUM_ITEM(Y);
+    ATTR_ENUM_ITEM(Coords);
+    ATTR_ENUM_ITEM(OriCoords);
+    ATTR_ENUM_ITEM(Rect);
+    ATTR_ENUM_ITEM(ScrollCoords);
+    ATTR_ENUM_ITEM(ScrollLeft);
+    ATTR_ENUM_ITEM(ScrollTop);
+    ATTR_ENUM_ITEM(ScrollRight);
+    ATTR_ENUM_ITEM(ScrollBottom);
 
     IDGEN_END();
 })

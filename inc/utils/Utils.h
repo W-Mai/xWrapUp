@@ -6,10 +6,41 @@
 #define XWRAPUP_UTILS_H
 #include <IDGenerator.h>
 
-using IDType     = IDGenerator::IDType;
-using id_type_t  = IDType;
-using CoordType  = int32_t;
-using coord_type = CoordType;
+using IDType    = IDGenerator::IDType;
+using CoordType = int32_t;
+using PosType   = struct {
+    CoordType x;
+    CoordType y;
+};
+using SizeType = struct {
+    CoordType w;
+    CoordType h;
+};
+using RectType = struct {
+    CoordType x0;
+    CoordType y0;
+    CoordType x1;
+    CoordType y1;
+};
+using RectSizeType = struct {
+    CoordType x;
+    CoordType y;
+    CoordType w;
+    CoordType h;
+};
+using BoxType = struct {
+    CoordType left;
+    CoordType top;
+    CoordType right;
+    CoordType bottom;
+};
+using id_type_t      = IDType;
+using coord_type     = CoordType;
+using pos_type       = PosType;
+using size_type      = SizeType;
+using rect_type      = RectType;
+using rect_size_type = RectSizeType;
+using box_type       = BoxType;
 
 #define MAP_TYPE std::map
 
