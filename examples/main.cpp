@@ -104,4 +104,15 @@ void app_create() {
     int width;
     wu_obj_get_attr(screen, AE(IObjBase) Width, &width);
     cout << width << endl;
+
+    // scroll
+    setAttr(obj, AE(IObjBase) ScrollRight, 10);
+    auto rect = getAttr<RectType>(obj, AE(IObjBase) ScrollCoords);
+    cout << rect.x0 << " " << rect.y0 << " " << rect.x1 << " " << rect.y1
+         << endl;
+
+    // get rect
+    auto rect2 = getAttr<RectType>(obj2, AE(IObjBase) Rect);
+    cout << rect2.x0 << " " << rect2.y0 << " " << rect2.x1 << " " << rect2.y1
+         << endl;
 }

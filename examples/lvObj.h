@@ -28,12 +28,26 @@ protected:
     CoordType nativeGetHeight() override;
     CoordType nativeGetX() override;
     CoordType nativeGetY() override;
+    RectType nativeGetCoords() override;
+    RectType nativeGetOriCoords() override;
+    RectSizeType nativeGetRect() override;
+    BoxType nativeGetScrollCoords() override;
+    CoordType nativeGetScrollLeft() override;
+    CoordType nativeGetScrollTop() override;
+    CoordType nativeGetScrollRight() override;
+    CoordType nativeGetScrollBottom() override;
 
     void nativeSetParent(void *par) override;
     void nativeSetWidth(CoordType w) override;
     void nativeSetHeight(CoordType h) override;
     void nativeSetX(CoordType x) override;
     void nativeSetY(CoordType y) override;
+    void nativeSetCoords(RectType coords) override;
+    void nativeSetScrollCoords(BoxType box) override;
+    void nativeSetScrollLeft(CoordType left) override;
+    void nativeSetScrollTop(CoordType top) override;
+    void nativeSetScrollRight(CoordType right) override;
+    void nativeSetScrollBottom(CoordType bottom) override;
 };
 
 
