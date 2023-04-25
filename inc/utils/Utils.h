@@ -5,6 +5,7 @@
 #ifndef XWRAPUP_UTILS_H
 #define XWRAPUP_UTILS_H
 #include <IDGenerator.h>
+#include <cstdarg>
 
 using IDType    = IDGenerator::IDType;
 using CoordType = int32_t;
@@ -88,6 +89,7 @@ using box_type       = BoxType;
             return __native;                                                   \
         }                                                                      \
         CLASS_NAME() = delete;                                                 \
+        virtual ~CLASS_NAME() {}                                               \
         static IObjBase *constructor(IObjBase *par = nullptr) {                \
             return new CLASS_NAME(par);                                        \
         }                                                                      \
