@@ -17,13 +17,13 @@ public:
 explicit IButton(IObjBase *parent) : IObjBase(parent) {}
 //void registerCb() {}
 
-ErrorCode getAttr(IDType id, void *ret_val, va_list vars) override;
-ErrorCode setAttr(IDType id, void *ret_val, va_list vars) override;
-ErrorCode exec(IDType id, void *ret_val, va_list vars) override;
+ErrorCode getAttr(IDType id, void *ret_val, VAR_LIST(vars)) override;
+ErrorCode setAttr(IDType id, void *ret_val, VAR_LIST(vars)) override;
+ErrorCode exec(IDType id, void *ret_val, VAR_LIST(vars)) override;
 
 protected:
-ErrorCode getTest(int *ret_val, va_list vars);
-ErrorCode setTest(void *ret_val, va_list vars);
+ErrorCode getTest(int *ret_val, VAR_LIST(vars));
+ErrorCode setTest(void *ret_val, VAR_LIST(vars));
 
 private:
 bool visibility{};

@@ -9,18 +9,26 @@
 
 using ParamPack = struct {};
 
+extern ParamPack __PARAM_PACK_NONE__;
+
 #ifdef XWU_USE_STD_ARGS
 #define VAR_ARGS ...
+#define VAR_LIST(ARG_NAME) va_list ARG_NAME
 #define VAR_START(ARG_NAME, LAST_VAR)                                          \
-    va_list ARG_NAME;                                                          \
+    VAR_LIST(ARG_NAME);                                                        \
     va_start(ARG_NAME, LAST_VAR)
 #define VAR_GET(ARG_NAME, TYPE) va_arg(ARG_NAME, TYPE)
 #define VAR_END(ARG_NAME) va_end(ARG_NAME)
+#define VAR_NONE 0
+#define VAR_PACK(...) __VA_ARGS__
 #else
 #define VAR_ARGS ParamPack &pp
+#define VAR_LIST(ARG_NAME) ParamPackOperator ARG_NAME
 #define VAR_START(ARG_NAME, LAST_VAR) ParamPackOperator ARG_NAME(pp)
 #define VAR_GET(ARG_NAME, TYPE) ARG_NAME.get<TYPE>()
 #define VAR_END(ARG_NAME)
+#define VAR_NONE __PARAM_PACK_NONE__
+#define VAR_PACK(ARG_NAME) (ParamPack &) ARG_NAME
 #endif
 
 class ParamPackOperator {

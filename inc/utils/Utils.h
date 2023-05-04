@@ -4,8 +4,10 @@
 
 #ifndef XWRAPUP_UTILS_H
 #define XWRAPUP_UTILS_H
-#include <IDGenerator.h>
 #include <cstdarg>
+
+#include <IDGenerator.h>
+#include <utils/ParamPack.h>
 
 using IDType    = IDGenerator::IDType;
 using CoordType = int32_t;
@@ -63,41 +65,41 @@ using box_type       = BoxType;
 #define OBJ_CONSTRUCTOR() : public IObjBase
 #define OBJ_CONSTRUCTOR_EX(...) : __VA_ARGS__
 
-#define CLASS_BEGIN(CLASS_NAME, HEADER_CONSTRUCTOR, ...)                       \
-    class CLASS_NAME HEADER_CONSTRUCTOR {                                      \
-    public:                                                                    \
-        using CLASS_FUNC_TYPE  = ErrorCode (CLASS_NAME::*)(void *, va_list);   \
-        const static IDType ID = CURRENT_CLASS_ID;                             \
-                                                                               \
-        struct ATTR_FUNC_PACK {                                                \
-            CLASS_FUNC_TYPE get;                                               \
-            CLASS_FUNC_TYPE set;                                               \
-        };                                                                     \
-        DECL_FUNC_MAP(CLASS_NAME);                                             \
-        DECL_ATTR_MAP(CLASS_NAME);                                             \
-        CLASS_OBJ_INIT(__VA_ARGS__)                                            \
-        virtual const char *type() { return __type; }                          \
-        IObjBase *parent(IObjBase *parent = nullptr) {                         \
-            if (parent) {                                                      \
-                __parent = parent;                                             \
-                nativeSetParent(__parent->native());                           \
-            }                                                                  \
-            return __parent;                                                   \
-        };                                                                     \
-        void *native(void *nat = nullptr) {                                    \
-            if (nat) __native = nat;                                           \
-            return __native;                                                   \
-        }                                                                      \
-        CLASS_NAME() = delete;                                                 \
-        virtual ~CLASS_NAME() {}                                               \
-        static IObjBase *constructor(IObjBase *par = nullptr) {                \
-            return new CLASS_NAME(par);                                        \
-        }                                                                      \
-        static void destructor(IObjBase *obj) { delete obj; }                  \
-                                                                               \
-    private:                                                                   \
-        const char *__type = #CLASS_NAME;                                      \
-        void *__native     = nullptr;                                          \
+#define CLASS_BEGIN(CLASS_NAME, HEADER_CONSTRUCTOR, ...)                        \
+    class CLASS_NAME HEADER_CONSTRUCTOR {                                       \
+    public:                                                                     \
+        using CLASS_FUNC_TYPE  = ErrorCode (CLASS_NAME::*)(void *, VAR_LIST()); \
+        const static IDType ID = CURRENT_CLASS_ID;                              \
+                                                                                \
+        struct ATTR_FUNC_PACK {                                                 \
+            CLASS_FUNC_TYPE get;                                                \
+            CLASS_FUNC_TYPE set;                                                \
+        };                                                                      \
+        DECL_FUNC_MAP(CLASS_NAME);                                              \
+        DECL_ATTR_MAP(CLASS_NAME);                                              \
+        CLASS_OBJ_INIT(__VA_ARGS__)                                             \
+        virtual const char *type() { return __type; }                           \
+        IObjBase *parent(IObjBase *parent = nullptr) {                          \
+            if (parent) {                                                       \
+                __parent = parent;                                              \
+                nativeSetParent(__parent->native());                            \
+            }                                                                   \
+            return __parent;                                                    \
+        };                                                                      \
+        void *native(void *nat = nullptr) {                                     \
+            if (nat) __native = nat;                                            \
+            return __native;                                                    \
+        }                                                                       \
+        CLASS_NAME() = delete;                                                  \
+        virtual ~CLASS_NAME() {}                                                \
+        static IObjBase *constructor(IObjBase *par = nullptr) {                 \
+            return new CLASS_NAME(par);                                         \
+        }                                                                       \
+        static void destructor(IObjBase *obj) { delete obj; }                   \
+                                                                                \
+    private:                                                                    \
+        const char *__type = #CLASS_NAME;                                       \
+        void *__native     = nullptr;                                           \
         IObjBase *__parent;
 
 

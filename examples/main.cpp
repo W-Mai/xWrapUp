@@ -88,7 +88,8 @@ void app_create() {
     setAttr(obj2, AE(IObjBase) X, 30);
     setAttr(obj2, AE(IObjBase) X, 10);
     // use c api to set attr
-    wu_obj_set_attr(obj2, AE(IObjBase) X, nullptr, 100);
+    CoordType x = 100;
+    wu_obj_set_attr(obj2, AE(IObjBase) X, nullptr, VAR_PACK(x));
 
     auto res = getAttr<CoordType>(objBase, AE(IObjBase) Width);
     cout << res << endl;
@@ -102,7 +103,7 @@ void app_create() {
     // use c api to get attr for screen
 
     int width;
-    wu_obj_get_attr(screen, AE(IObjBase) Width, &width);
+    wu_obj_get_attr(screen, AE(IObjBase) Width, &width, VAR_NONE);
     cout << width << endl;
 
     // scroll

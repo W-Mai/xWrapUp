@@ -76,48 +76,46 @@ void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
     return destructor(obj);
 }
 
-ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, ...) {
+ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, VAR_ARGS) {
     auto o = (IObjBase *) obj;
 
     assert(obj);
     assert(res);
 
-    va_list ap;
-    va_start(ap, res);
+    VAR_START(ap, res);
     auto ec = o->getAttr(type, res, ap);
-    va_end(ap);
+    VAR_END(ap);
     return ec;
 }
 
-ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, ...) {
+ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, VAR_ARGS) {
     auto o = (IObjBase *) obj;
 
     assert(obj);
 
-    va_list ap;
-    va_start(ap, res);
+    VAR_START(ap, res);
     auto ec = o->setAttr(type, res, ap);
-    va_end(ap);
+    VAR_END(ap);
     return ec;
 }
 
 ErrorCode
-wu_obj_get_attr_v(void *obj, id_type_t type, void *res, va_list vars) {
+wu_obj_get_attr_v(void *obj, id_type_t type, void *res, VAR_LIST(args)) {
     auto o = (IObjBase *) obj;
 
     assert(obj);
     assert(res);
 
-    auto ec = o->getAttr(type, res, vars);
+    auto ec = o->getAttr(type, res, args);
     return ec;
 }
 
 ErrorCode
-wu_obj_set_attr_v(void *obj, id_type_t type, void *res, va_list vars) {
+wu_obj_set_attr_v(void *obj, id_type_t type, void *res, VAR_LIST(args)) {
     auto o = (IObjBase *) obj;
 
     assert(obj);
 
-    auto ec = o->setAttr(type, res, vars);
+    auto ec = o->setAttr(type, res, args);
     return ec;
 }

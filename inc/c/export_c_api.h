@@ -21,10 +21,10 @@ void *wu_obj_create(const wrapper_context_t *ctx, id_type_t type, void *parent);
 void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj);
 
 // ****************************** attr ****************************************
-ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, ...);
-ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, ...);
-ErrorCode wu_obj_get_attr_v(void *obj, id_type_t type, void *res, va_list args);
-ErrorCode wu_obj_set_attr_v(void *obj, id_type_t type, void *res, va_list args);
+ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, VAR_ARGS);
+ErrorCode wu_obj_set_attr(void *obj, id_type_t type, void *res, VAR_ARGS);
+ErrorCode wu_obj_get_attr_v(void *obj, id_type_t type, void *res, VAR_LIST(args));
+ErrorCode wu_obj_set_attr_v(void *obj, id_type_t type, void *res, VAR_LIST(args));
 };
 
 

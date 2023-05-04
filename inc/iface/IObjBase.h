@@ -34,46 +34,46 @@ CLASS_BEGIN(IObjBase, OBJ_BASE_CONSTRUCTOR(), {
 public:
 explicit IObjBase(IObjBase *parent) : __parent(parent) {}
 
-virtual ErrorCode getAttr(IDType id, void *ret_val, ...);
-virtual ErrorCode setAttr(IDType id, void *ret_val, ...);
-virtual ErrorCode exec(IDType id, void *ret_val, ...);
+virtual ErrorCode getAttr(IDType id, void *ret_val, VAR_ARGS);
+virtual ErrorCode setAttr(IDType id, void *ret_val, VAR_ARGS);
+virtual ErrorCode exec(IDType id, void *ret_val, VAR_ARGS);
 
 //void registerCb() {}
 
-virtual ErrorCode getAttr(IDType id, void *ret_val, va_list vars);
-virtual ErrorCode setAttr(IDType id, void *ret_val, va_list vars);
-virtual ErrorCode exec(IDType id, void *ret_val, va_list vars);
+virtual ErrorCode getAttr(IDType id, void *ret_val, VAR_LIST(vars));
+virtual ErrorCode setAttr(IDType id, void *ret_val, VAR_LIST(vars));
+virtual ErrorCode exec(IDType id, void *ret_val, VAR_LIST(vars));
 
 protected:
-ErrorCode show(int * /*ret_val*/, va_list /*vars*/);
-ErrorCode hide(int * /*ret_val*/, va_list /*vars*/);
-ErrorCode visible(int *ret_val, va_list vars) const;
+ErrorCode show(int * /*ret_val*/, VAR_LIST(vars));
+ErrorCode hide(int * /*ret_val*/, VAR_LIST(vars));
+ErrorCode visible(int *ret_val, VAR_LIST(vars)) const;
 
-ErrorCode getWidth(CoordType *ret_val, va_list vars);
-ErrorCode getHeight(CoordType *ret_val, va_list vars);
-ErrorCode getX(CoordType *ret_val, va_list vars);
-ErrorCode getY(CoordType *ret_val, va_list vars);
-ErrorCode getCoords(RectType *ret_val, va_list vars);
-ErrorCode getOriCoords(RectType *ret_val, va_list vars);
-ErrorCode getRect(RectSizeType *ret_val, va_list vars);
-ErrorCode getScrollCoords(BoxType *ret_val, va_list vars);
-ErrorCode getScrollLeft(CoordType *ret_val, va_list vars);
-ErrorCode getScrollTop(CoordType *ret_val, va_list vars);
-ErrorCode getScrollRight(CoordType *ret_val, va_list vars);
-ErrorCode getScrollBottom(CoordType *ret_val, va_list vars);
+ErrorCode getWidth(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getHeight(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getX(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getY(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getCoords(RectType *ret_val, VAR_LIST(vars));
+ErrorCode getOriCoords(RectType *ret_val, VAR_LIST(vars));
+ErrorCode getRect(RectSizeType *ret_val, VAR_LIST(vars));
+ErrorCode getScrollCoords(BoxType *ret_val, VAR_LIST(vars));
+ErrorCode getScrollLeft(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getScrollTop(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getScrollRight(CoordType *ret_val, VAR_LIST(vars));
+ErrorCode getScrollBottom(CoordType *ret_val, VAR_LIST(vars));
 
-ErrorCode setWidth(void *ret_val, va_list vars);
-ErrorCode setHeight(void *ret_val, va_list vars);
-ErrorCode setX(void *ret_val, va_list vars);
-ErrorCode setY(void *ret_val, va_list vars);
-ErrorCode setCoords(void *ret_val, va_list vars);
-ErrorCode setOriCoords(void *ret_val, va_list vars);
-ErrorCode setRect(void *ret_val, va_list vars);
-ErrorCode setScrollCoords(void *ret_val, va_list vars);
-ErrorCode setScrollLeft(void *ret_val, va_list vars);
-ErrorCode setScrollTop(void *ret_val, va_list vars);
-ErrorCode setScrollRight(void *ret_val, va_list vars);
-ErrorCode setScrollBottom(void *ret_val, va_list vars);
+ErrorCode setWidth(void *ret_val, VAR_LIST(vars));
+ErrorCode setHeight(void *ret_val, VAR_LIST(vars));
+ErrorCode setX(void *ret_val, VAR_LIST(vars));
+ErrorCode setY(void *ret_val, VAR_LIST(vars));
+ErrorCode setCoords(void *ret_val, VAR_LIST(vars));
+ErrorCode setOriCoords(void *ret_val, VAR_LIST(vars));
+ErrorCode setRect(void *ret_val, VAR_LIST(vars));
+ErrorCode setScrollCoords(void *ret_val, VAR_LIST(vars));
+ErrorCode setScrollLeft(void *ret_val, VAR_LIST(vars));
+ErrorCode setScrollTop(void *ret_val, VAR_LIST(vars));
+ErrorCode setScrollRight(void *ret_val, VAR_LIST(vars));
+ErrorCode setScrollBottom(void *ret_val, VAR_LIST(vars));
 
 // ********************************************************************
 // *                        Native Operations                         *

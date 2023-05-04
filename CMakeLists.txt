@@ -8,7 +8,7 @@ set(BUILD_EXAMPLES 0)
 # depress suggest-override
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-inconsistent-missing-override")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-inconsistent-missing-override")
-
+#add_definitions(-DXWU_USE_STD_ARGS=1)
 include_directories(inc)
 
 file(GLOB
@@ -16,6 +16,7 @@ file(GLOB
         src/*.cpp
         src/c/*.cpp
         src/iface/*.cpp
+        src/utils/*.cpp
         )
 
 add_library(xWrapUp STATIC ${SOURCES})
