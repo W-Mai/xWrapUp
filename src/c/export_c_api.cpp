@@ -44,8 +44,8 @@ wu_obj_create(const wrapper_context_t *ctx, id_type_t type, void *parent) {
         ctx->kps,
         ctx->kps + ctx->cnt,
         type,
-        [](const wrapper_context_t ::KPS &kps, const IDType &type) {
-            return kps.type < type;
+        [](const wrapper_context_t ::KPS &kps, const IDType &t) {
+            return kps.type < t;
         }
     );
 
@@ -53,7 +53,7 @@ wu_obj_create(const wrapper_context_t *ctx, id_type_t type, void *parent) {
 
     auto constructor = it->constructor;
 
-    return constructor(parent);
+    return constructor(par);
 }
 
 void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
@@ -66,8 +66,8 @@ void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
         ctx->kps,
         ctx->kps + ctx->cnt,
         type,
-        [](const wrapper_context_t ::KPS &kps, const IDType &type) {
-            return kps.type < type;
+        [](const wrapper_context_t ::KPS &kps, const IDType &t) {
+            return kps.type < t;
         }
     );
 
@@ -75,7 +75,7 @@ void *wu_obj_destroy(const wrapper_context_t *ctx, id_type_t type, void *obj) {
 
     auto destructor = it->destructor;
 
-    return destructor(obj);
+    return destructor(o);
 }
 
 ErrorCode wu_obj_get_attr(void *obj, id_type_t type, void *res, VAR_ARGS) {
