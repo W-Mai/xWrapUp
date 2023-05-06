@@ -2,7 +2,9 @@
 // Created by W-Mai on 2023/4/14.
 //
 #include <algorithm>
+#include <cassert>
 #include <cstdlib>
+
 #include <xWrapUp.h>
 
 void wu_obj_register(

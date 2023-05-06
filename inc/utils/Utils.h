@@ -11,27 +11,27 @@
 
 using IDType    = IDGenerator::IDType;
 using CoordType = int32_t;
-using PosType   = struct {
+struct PosType {
     CoordType x;
     CoordType y;
 };
-using SizeType = struct {
+struct SizeType {
     CoordType w;
     CoordType h;
 };
-using RectType = struct {
+struct RectType {
     CoordType x0;
     CoordType y0;
     CoordType x1;
     CoordType y1;
 };
-using RectSizeType = struct {
+struct RectSizeType {
     CoordType x;
     CoordType y;
     CoordType w;
     CoordType h;
 };
-using BoxType = struct {
+struct BoxType {
     CoordType left;
     CoordType top;
     CoordType right;

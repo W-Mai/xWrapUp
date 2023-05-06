@@ -7,7 +7,7 @@
 
 #include <cinttypes>
 
-using ParamPack = struct {};
+struct ParamPack {};
 
 extern ParamPack __PARAM_PACK_NONE__;
 
